@@ -1,0 +1,60 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\SRC\\PRN212\\Assigment\\BookShop\\BookStore\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2C906654-D21D-46CB-952C-33975D8547E4}|Team4.BookStore\\Team4.BookStore.csproj|d:\\src\\prn212\\assigment\\bookshop\\bookstore\\team4.bookstore\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{2C906654-D21D-46CB-952C-33975D8547E4}|Team4.BookStore\\Team4.BookStore.csproj|solutionrelative:team4.bookstore\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2C906654-D21D-46CB-952C-33975D8547E4}|Team4.BookStore\\Team4.BookStore.csproj|d:\\src\\prn212\\assigment\\bookshop\\bookstore\\team4.bookstore\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2C906654-D21D-46CB-952C-33975D8547E4}|Team4.BookStore\\Team4.BookStore.csproj|solutionrelative:team4.bookstore\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "D:\\SRC\\PRN212\\Assigment\\BookShop\\BookStore\\Team4.BookStore\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "Team4.BookStore\\MainWindow.xaml",
+              "ToolTip": "D:\\SRC\\PRN212\\Assigment\\BookShop\\BookStore\\Team4.BookStore\\MainWindow.xaml",
+              "RelativeToolTip": "Team4.BookStore\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-12-15T09:04:53.101Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "D:\\SRC\\PRN212\\Assigment\\BookShop\\BookStore\\Team4.BookStore\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Team4.BookStore\\MainWindow.xaml.cs",
+              "ToolTip": "D:\\SRC\\PRN212\\Assigment\\BookShop\\BookStore\\Team4.BookStore\\MainWindow.xaml.cs",
+              "RelativeToolTip": "Team4.BookStore\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T09:04:50.654Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
