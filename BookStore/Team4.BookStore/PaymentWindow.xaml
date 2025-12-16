@@ -4,13 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Payment" Height="750" Width="550" 
+        Title="Payment" Height="620" Width="500" 
         Background="#1a1a2e" WindowStartupLocation="CenterOwner" 
         ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True"
         Loaded="Window_Loaded">
 
     <Border CornerRadius="15" Background="#16213e" BorderBrush="#0f3460" BorderThickness="2">
-        <Grid Margin="30">
+        <Grid Margin="20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -20,31 +20,31 @@
             </Grid.RowDefinitions>
 
             <!-- Header -->
-            <StackPanel Grid.Row="0" Margin="0,0,0,20">
-                <TextBlock Text="💳 Payment" FontSize="28" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
-                <TextBlock Text="Select payment method" FontSize="14" Foreground="#888" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+            <StackPanel Grid.Row="0" Margin="0,0,0,10">
+                <TextBlock Text="💳 Payment" FontSize="22" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+                <TextBlock Text="Select payment method" FontSize="12" Foreground="#888" HorizontalAlignment="Center" Margin="0,3,0,0"/>
             </StackPanel>
 
             <!-- Total Amount -->
-            <Border Grid.Row="1" Background="#1a1a2e" CornerRadius="10" Padding="20" Margin="0,0,0,20">
+            <Border Grid.Row="1" Background="#1a1a2e" CornerRadius="8" Padding="10" Margin="0,0,0,10">
                 <StackPanel HorizontalAlignment="Center">
-                    <TextBlock Text="Total Amount" FontSize="16" Foreground="#888" HorizontalAlignment="Center"/>
-                    <TextBlock x:Name="TotalAmountLabel" Text="$0.00" FontSize="42" FontWeight="Bold" Foreground="#4ecca3" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Total Amount" FontSize="12" Foreground="#888" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="TotalAmountLabel" Text="$0.00" FontSize="32" FontWeight="Bold" Foreground="#4ecca3" HorizontalAlignment="Center"/>
                 </StackPanel>
             </Border>
 
             <!-- Payment Methods -->
-            <StackPanel Grid.Row="2" Margin="0,0,0,20">
+            <StackPanel Grid.Row="2" Margin="0,0,0,10">
                 <RadioButton x:Name="CashRadio" GroupName="PaymentMethod" IsChecked="True" Margin="0,0,0,10">
                     <RadioButton.Template>
                         <ControlTemplate TargetType="RadioButton">
-                            <Border x:Name="border" Background="#1a1a2e" CornerRadius="10" Padding="20" Cursor="Hand"
+                            <Border x:Name="border" Background="#1a1a2e" CornerRadius="8" Padding="12" Cursor="Hand"
                                     BorderBrush="#333" BorderThickness="2">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="💵" FontSize="30" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                                    <TextBlock Text="💵" FontSize="22" VerticalAlignment="Center" Margin="0,0,10,0"/>
                                     <StackPanel VerticalAlignment="Center">
-                                        <TextBlock Text="Cash Payment" FontSize="18" FontWeight="SemiBold" Foreground="White"/>
-                                        <TextBlock Text="Pay with cash" FontSize="12" Foreground="#888"/>
+                                        <TextBlock Text="Cash Payment" FontSize="14" FontWeight="SemiBold" Foreground="White"/>
+                                        <TextBlock Text="Pay with cash" FontSize="10" Foreground="#888"/>
                                     </StackPanel>
                                 </StackPanel>
                             </Border>
@@ -64,13 +64,13 @@
                 <RadioButton x:Name="QRRadio" GroupName="PaymentMethod">
                     <RadioButton.Template>
                         <ControlTemplate TargetType="RadioButton">
-                            <Border x:Name="border" Background="#1a1a2e" CornerRadius="10" Padding="20" Cursor="Hand"
+                            <Border x:Name="border" Background="#1a1a2e" CornerRadius="8" Padding="12" Cursor="Hand"
                                     BorderBrush="#333" BorderThickness="2">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="📱" FontSize="30" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                                    <TextBlock Text="📱" FontSize="22" VerticalAlignment="Center" Margin="0,0,10,0"/>
                                     <StackPanel VerticalAlignment="Center">
-                                        <TextBlock Text="QR Code Payment" FontSize="18" FontWeight="SemiBold" Foreground="White"/>
-                                        <TextBlock Text="Scan QR to pay (simulated)" FontSize="12" Foreground="#888"/>
+                                        <TextBlock Text="QR Code Payment" FontSize="14" FontWeight="SemiBold" Foreground="White"/>
+                                        <TextBlock Text="Scan QR to pay" FontSize="10" Foreground="#888"/>
                                     </StackPanel>
                                 </StackPanel>
                             </Border>
@@ -90,19 +90,12 @@
 
             <!-- QR Code Display (shown when QR selected) -->
             <Border x:Name="QRCodePanel" Grid.Row="3" Visibility="Collapsed" 
-                    Background="#1a1a2e" CornerRadius="10" Padding="20" Margin="0,0,0,10">
+                    Background="#1a1a2e" CornerRadius="8" Padding="10" Margin="0,0,0,5">
                 <StackPanel HorizontalAlignment="Center">
-                    <Border Width="180" Height="180" Background="White" CornerRadius="10" Margin="0,0,0,10" Padding="10">
-                        <Grid>
-                            <!-- Simulated QR pattern -->
-                            <Border Background="#1a1a2e" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="3"/>
-                            <Border Background="#1a1a2e" Width="20" Height="20" HorizontalAlignment="Right" VerticalAlignment="Top" CornerRadius="3"/>
-                            <Border Background="#1a1a2e" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" CornerRadius="3"/>
-                            <TextBlock Text="📱 QR" FontSize="28" FontWeight="Bold" Foreground="#1a1a2e" 
-                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Grid>
+                    <Border Width="180" Height="180" Background="White" CornerRadius="8" Margin="0,0,0,8" Padding="3">
+                        <Image x:Name="QRCodeImage" Stretch="Uniform"/>
                     </Border>
-                    <TextBlock Text="Scan to pay (simulated)" FontSize="14" Foreground="#4ecca3" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+                    <TextBlock Text="Scan QR code to pay" FontSize="12" Foreground="#4ecca3" HorizontalAlignment="Center" FontWeight="SemiBold"/>
                 </StackPanel>
             </Border>
 
