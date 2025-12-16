@@ -2,6 +2,7 @@
 using BookStore.DAL.Entities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,19 +41,24 @@ namespace Team4.BookStore
 
             if (X != null)
             {
-                DetailTitleLable.Content = "Chỉnh sửa Sachs";
-                // fill thôi 8 cột disable ô key
+                DetailTitleLable.Content = "Chỉnh sửa Sách";
                 BookIdTextBox.Text = X.BookId.ToString();
                 BookIdTextBox.IsEnabled = false;
                 BookNameTextBox.Text = X.BookName;
                 DescriptionTextBox.Text = X.Description;
+                PublicationDateTextBox.Text = X.PublicationDate.ToString("yyyy-MM-dd");
                 QuantityTextBox.Text = X.Quantity.ToString();
                 PriceTextBox.Text = X.Price.ToString();
                 AuthorTextBox.Text = X.Author.ToString();
-                PublicationDataPicker.Text = X.PublicationDate.ToString();
 
-                // phải nhảy đến đúng phần edit mode
                 CategoryIdComboBox.SelectedValue = X.CategoryId;
+                
+                // Load ImageUrl nếu có
+                if (!string.IsNullOrWhiteSpace(X.ImageUrl))
+                {
+                    ImageUrlTextBox.Text = X.ImageUrl;
+                    LoadImagePreview(X.ImageUrl);
+                }
             }
             else
             {
@@ -62,8 +68,6 @@ namespace Team4.BookStore
 
         public bool CheckVar()
         {
-            //check id có rỗng hay không
-            //check name có rỗng hay không, có dài từ 5 ... 50 kí tự
             string name = BookNameTextBox.Text.Trim();
             if (string.IsNullOrWhiteSpace(name))
             {
@@ -72,35 +76,113 @@ namespace Team4.BookStore
             }
             if (name.Length < 5 || name.Length > 100)
             {
-                MessageBox.Show("Name must be 5 to 50 character length", "Validation", MessageBoxButton.OK, MessageBoxImage.Stop);
+                MessageBox.Show("Name must be 5 to 100 character length", "Validation", MessageBoxButton.OK, MessageBoxImage.Stop);
                 return false;
             }
-            //check số quantity có từ 50... 100 hay không, gõ chữ là chửi
 
             return true;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            // phải gọi hàm check var rồi mới chạy code dưới
-            if (CheckVar() != true)
+            try
             {
-                return; //Không thoát check vả không save xuống database
+                if (CheckVar() != true)
+                {
+                    return;
+                }
+                Book obj = new();
+                obj.BookId = int.Parse(BookIdTextBox.Text);
+                obj.BookName = BookNameTextBox.Text;
+                obj.Description = DescriptionTextBox.Text;
+                obj.PublicationDate = DateTime.Parse(PublicationDateTextBox.Text);
+                obj.Quantity = int.Parse(QuantityTextBox.Text);
+                obj.Price = double.Parse(PriceTextBox.Text);
+                obj.Author = AuthorTextBox.Text;
+                obj.CategoryId = int.Parse(CategoryIdComboBox.SelectedValue.ToString());
+                
+                // Lưu ImageUrl
+                string imageUrl = ImageUrlTextBox.Text.Trim();
+                obj.ImageUrl = string.IsNullOrWhiteSpace(imageUrl) ? null : imageUrl;
+
+                if (X == null) _bookService.CreateBook(obj);
+                else _bookService.UpdateBook(obj);
+                Close();
             }
-            // chuẩn bị 1 obj máy lạnh mới set các value từ màn hình ô nhập và gửi cho service
-            Book obj = new();
-            // set từng field 1
-            obj.BookId = int.Parse(BookIdTextBox.Text);
-            obj.BookName = BookNameTextBox.Text;
-            obj.Description = DescriptionTextBox.Text;
-            obj.Quantity = int.Parse(QuantityTextBox.Text);
-            obj.Price = double.Parse(PriceTextBox.Text);
-            obj.Author = AuthorTextBox.Text;
-            obj.PublicationDate = PublicationDataPicker.SelectedDate.Value;
-            obj.CategoryId = int.Parse(CategoryIdComboBox.SelectedValue.ToString());
-            if (X == null) _bookService.CreateBook(obj);
-            else _bookService.UpdateBook(obj);
-            Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi lưu sách: {ex.Message}\n\nChi tiết: {ex.InnerException?.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        /// <summary>
+        /// Xử lý khi nhấn nút Browse để chọn file ảnh
+        /// </summary>
+        private void BrowseImageButton_Click(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new Microsoft.Win32.OpenFileDialog
+            {
+                Filter = "Image Files (*.jpg;*.jpeg;*.png;*.gif;*.bmp)|*.jpg;*.jpeg;*.png;*.gif;*.bmp|All Files (*.*)|*.*",
+                Title = "Chọn ảnh bìa sách"
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                ImageUrlTextBox.Text = openFileDialog.FileName;
+            }
+        }
+
+        /// <summary>
+        /// Xử lý khi ImageUrl thay đổi để cập nhật preview
+        /// </summary>
+        private void ImageUrlTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (BookCoverImage == null || ImageUrlTextBox == null) return;
+            
+            string imageUrl = ImageUrlTextBox.Text?.Trim() ?? "";
+            if (!string.IsNullOrWhiteSpace(imageUrl))
+            {
+                LoadImagePreview(imageUrl);
+            }
+            else
+            {
+                BookCoverImage.Source = null;
+            }
+        }
+
+        /// <summary>
+        /// Load và hiển thị preview hình ảnh từ URL hoặc file path
+        /// </summary>
+        private void LoadImagePreview(string imageUrl)
+        {
+            try
+            {
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+
+                if (imageUrl.StartsWith("http://") || imageUrl.StartsWith("https://"))
+                {
+                    bitmap.UriSource = new Uri(imageUrl);
+                }
+                else if (File.Exists(imageUrl))
+                {
+                    bitmap.UriSource = new Uri(imageUrl);
+                }
+                else
+                {
+                    BookCoverImage.Source = null;
+                    return;
+                }
+
+                bitmap.EndInit();
+                BookCoverImage.Source = bitmap;
+            }
+            catch (Exception)
+            {
+                BookCoverImage.Source = null;
+            }
         }
     }
 }
+

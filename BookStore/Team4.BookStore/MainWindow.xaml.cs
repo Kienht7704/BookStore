@@ -1,5 +1,6 @@
 ﻿using BookStore.BLL.Services;
 using BookStore.DAL.Entities;
+using System; // Added for DateTime and Exception
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,6 +24,7 @@ namespace Team4.BookStore
             InitializeComponent();
         }
         private BookService _service = new();
+        private ExcelService _excelService = new();
 
 
         public User X { get; set; }
@@ -50,7 +52,7 @@ namespace Team4.BookStore
             }// không làm phần  confirm are you sure thì bị trừ điểm
             else
             {
-                MessageBoxResult answer = MessageBox.Show("Are you sure you want to delete the selected air conditioner?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Error);
+                MessageBoxResult answer = MessageBox.Show("Are you sure you want to delete the selected book?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Error);
                 if (answer == MessageBoxResult.No)
                 {
                     // không xóa thì thoát hàm
@@ -86,6 +88,60 @@ namespace Team4.BookStore
             DetailWindow detail = new();
             detail.ShowDialog();
             AirConDataGrid.ItemsSource = _service.GetALLBook();
+        }
+
+        private void ImportButton_Click(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new Microsoft.Win32.OpenFileDialog
+            {
+                Filter = "Excel Files (*.xlsx)|*.xlsx|All Files (*.*)|*.*",
+                Title = "Select Excel file to import"
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    var books = _excelService.ImportBooksFromExcel(openFileDialog.FileName);
+                    if (books.Count == 0)
+                    {
+                        MessageBox.Show("No valid books found in the Excel file.", "Import", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+
+                    _service.CreateBooks(books);
+                    AirConDataGrid.ItemsSource = _service.GetALLBook();
+                    MessageBox.Show($"Successfully imported {books.Count} book(s)!", "Import Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error importing Excel file: {ex.Message}", "Import Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+        private void ExportButton_Click(object sender, RoutedEventArgs e)
+        {
+            var saveFileDialog = new Microsoft.Win32.SaveFileDialog
+            {
+                Filter = "Excel Files (*.xlsx)|*.xlsx",
+                Title = "Save Excel file",
+                FileName = $"BookStore_Export_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx"
+            };
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    var books = _service.GetALLBook();
+                    _excelService.ExportBooksToExcel(books, saveFileDialog.FileName);
+                    MessageBox.Show($"Successfully exported {books.Count} book(s) to Excel!", "Export Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error exporting to Excel: {ex.Message}", "Export Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
     }
 }

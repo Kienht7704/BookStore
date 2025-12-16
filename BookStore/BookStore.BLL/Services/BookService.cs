@@ -23,6 +23,13 @@ namespace BookStore.BLL.Services
 
         public void CreateBook(Book obj) => _repo.Create(obj);
 
-
+        public void CreateBooks(List<Book> books)
+        {
+            foreach (var book in books)
+            {
+                _repo.Create(book);
+            }
+        }
     }
 }
+

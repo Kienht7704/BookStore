@@ -21,6 +21,7 @@
         <TextBox x:Name="DescriptionTextBox" HorizontalAlignment="Left" Height="105" Margin="217,254,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="378" TabIndex="4" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" VerticalContentAlignment="Top"/>
 
         <Label Content="PublicationDate" HorizontalAlignment="Left" Height="45" Margin="53,388,0,0" VerticalAlignment="Top" Width="145" Foreground="#ff4500"/>
+        <TextBox x:Name="PublicationDateTextBox" HorizontalAlignment="Left" Height="45" Margin="217,388,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="635" TabIndex="3"/>
 
         <Label Content="Quantity" HorizontalAlignment="Left" Height="45" Margin="53,472,0,0" VerticalAlignment="Top" Width="157" Foreground="#ff4500"/>
         <TextBox x:Name="QuantityTextBox" HorizontalAlignment="Left" Height="45" Margin="217,472,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="635" TabIndex="2" RenderTransformOrigin="0.499,0.542"/>
@@ -36,7 +37,18 @@
         <Button x:Name="SaveButton" Content="Save Book" HorizontalAlignment="Left" Height="50" Margin="945,128,0,0" VerticalAlignment="Top" Width="165" TabIndex="8" Click="SaveButton_Click" />
         <Button x:Name="CloseButton" Content="Close" HorizontalAlignment="Left" Height="50" Margin="945,208,0,0" VerticalAlignment="Top" Width="165" TabIndex="9" />
         <ComboBox x:Name="CategoryIdComboBox" HorizontalAlignment="Left" Height="45" Margin="223,615,0,0" VerticalAlignment="Top" Width="377"/>
-        <DatePicker x:Name="PublicationDataPicker" HorizontalAlignment="Left" Height="45" Margin="223,388,0,0" VerticalAlignment="Top" Width="372" FontSize="18"/>
+
+        <!-- Book Cover Image Section -->
+        <Label Content="Image URL" HorizontalAlignment="Left" Height="45" Margin="615,254,0,0" VerticalAlignment="Top" Width="107" Foreground="#ff4500"/>
+        <TextBox x:Name="ImageUrlTextBox" HorizontalAlignment="Left" Height="45" Margin="615,299,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" TabIndex="7" TextChanged="ImageUrlTextBox_TextChanged"/>
+        <Button x:Name="BrowseImageButton" Content="Browse..." HorizontalAlignment="Left" Height="30" Margin="615,349,0,0" VerticalAlignment="Top" Width="80" Click="BrowseImageButton_Click"/>
+        
+        <!-- Image Preview -->
+        <Border HorizontalAlignment="Left" Height="200" Margin="615,389,0,0" VerticalAlignment="Top" Width="237" BorderBrush="#ff4500" BorderThickness="2" Background="White" CornerRadius="5">
+            <Image x:Name="BookCoverImage" Stretch="Uniform" Margin="5"/>
+        </Border>
+        <Label Content="Preview" HorizontalAlignment="Left" Height="30" Margin="700,590,0,0" VerticalAlignment="Top" Width="70" Foreground="#ff4500" FontStyle="Italic"/>
 
     </Grid>
 </Window>
+
