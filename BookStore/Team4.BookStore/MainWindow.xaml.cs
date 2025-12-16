@@ -144,6 +144,18 @@ namespace Team4.BookStore
             }
         }
 
+        /// <summary>
+        /// Open Point of Sale window for checkout
+        /// </summary>
+        private void POSButton_Click(object sender, RoutedEventArgs e)
+        {
+            POSWindow posWindow = new POSWindow();
+            posWindow.CurrentStaff = X;
+            posWindow.ShowDialog();
+            // Refresh book list after POS closes (stock may have changed)
+            AirConDataGrid.ItemsSource = _service.GetALLBook();
+        }
+
         private void UserManageButton_Click(object sender, RoutedEventArgs e)
         {
             UserManagementWindow userManage = new();

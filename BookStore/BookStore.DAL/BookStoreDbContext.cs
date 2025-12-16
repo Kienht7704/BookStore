@@ -25,6 +25,10 @@ public partial class BookStoreDbContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
+    public virtual DbSet<Invoice> Invoices { get; set; }
+
+    public virtual DbSet<InvoiceDetail> InvoiceDetails { get; set; }
+
     private string GetConnectionString()
     {
         IConfiguration config = new ConfigurationBuilder()
@@ -98,8 +102,45 @@ public partial class BookStoreDbContext : DbContext
                 .HasConstraintName("FK_User_Role");
         });
 
+        modelBuilder.Entity<Invoice>(entity =>
+        {
+            entity.HasKey(e => e.InvoiceId);
+
+            entity.ToTable("Invoice");
+
+            entity.Property(e => e.InvoiceId).ValueGeneratedOnAdd();
+            entity.Property(e => e.InvoiceDate).HasColumnType("datetime").HasDefaultValueSql("GETDATE()");
+            entity.Property(e => e.PaymentMethod).HasMaxLength(20);
+            entity.Property(e => e.Status).HasMaxLength(20).HasDefaultValue("Completed");
+
+            entity.HasOne(d => d.Staff).WithMany(p => p.Invoices)
+                .HasForeignKey(d => d.StaffId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Invoice_User");
+        });
+
+        modelBuilder.Entity<InvoiceDetail>(entity =>
+        {
+            entity.HasKey(e => e.InvoiceDetailId);
+
+            entity.ToTable("InvoiceDetail");
+
+            entity.Property(e => e.InvoiceDetailId).ValueGeneratedOnAdd();
+
+            entity.HasOne(d => d.Invoice).WithMany(p => p.InvoiceDetails)
+                .HasForeignKey(d => d.InvoiceId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_InvoiceDetail_Invoice");
+
+            entity.HasOne(d => d.Book).WithMany()
+                .HasForeignKey(d => d.BookId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_InvoiceDetail_Book");
+        });
+
         OnModelCreatingPartial(modelBuilder);
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
+

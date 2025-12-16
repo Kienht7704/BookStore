@@ -16,4 +16,6 @@ public partial class User
     public int RoleId { get; set; }
 
     public virtual Role Role { get; set; } = null!;
+
+    public virtual ICollection<Invoice> Invoices { get; set; } = new List<Invoice>();
 }

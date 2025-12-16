@@ -17,6 +17,9 @@
         <Label Content="Feature Function" HorizontalAlignment="Left" Height="45" Margin="388,169,0,0" VerticalAlignment="Top" Width="152" Foreground="#ff4500"/>
         <TextBox x:Name="FeatureFunctionTextBox" HorizontalAlignment="Left" Height="45" Margin="547,165,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="303" TabIndex="0"/>
 
+        <!-- POS Button - Opens Point of Sale -->
+        <Button x:Name="POSButton" Content="🛒 Open POS" HorizontalAlignment="Left" Height="50" Margin="880,165,0,0" VerticalAlignment="Top" Width="165" TabIndex="2" Click="POSButton_Click" Background="#4ecca3" Foreground="#1a1a2e" FontWeight="ExtraBold" FontSize="16"/>
+
         <Button x:Name="CreateButton" Content="Create Book" HorizontalAlignment="Left" Height="50" Margin="1003,294,0,0" VerticalAlignment="Top" Width="185" TabIndex="3" Click="CreateButton_Click"/>
         <Button x:Name="UpdateButton" Content="Update Book" HorizontalAlignment="Left" Height="50" Margin="1003,367,0,0" VerticalAlignment="Top" Width="185
                 " TabIndex="4" Click="UpdateButton_Click" />
