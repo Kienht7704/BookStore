@@ -161,5 +161,61 @@ namespace Team4.BookStore
             UserManagementWindow userManage = new();
             userManage.ShowDialog();
         }
+
+        private void QRScanButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                QRScannerWindow qrWindow = new QRScannerWindow();
+                qrWindow.ShowDialog();
+
+                // Refresh lại datagrid sau khi quét (nếu cần)
+                AirConDataGrid.ItemsSource = _service.GetALLBook();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi mở cửa sổ quét QR: {ex.Message}",
+                    "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void GenerateQRButton_Click(object sender, RoutedEventArgs e)
+        {
+            Book? selected = AirConDataGrid.SelectedItem as Book;
+            if (selected == null)
+            {
+                MessageBox.Show("Vui lòng chọn một sách để tạo mã QR!",
+                    "Chọn sách", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            GenerateQRWindow qrWindow = new GenerateQRWindow();
+            qrWindow.SelectedBook = selected;
+            qrWindow.ShowDialog();
+        }
+
+        private void GenerateBarcodeButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Book? selected = AirConDataGrid.SelectedItem as Book;
+
+                if (selected == null)
+                {
+                    MessageBox.Show("Vui lòng chọn một sách để tạo Barcode! ",
+                        "Chọn sách", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                GenerateBarcodeWindow barcodeWindow = new GenerateBarcodeWindow();
+                barcodeWindow.SelectedBook = selected;
+                barcodeWindow.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi mở cửa sổ Barcode: {ex.Message}",
+                    "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }
