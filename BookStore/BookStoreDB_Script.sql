@@ -45,7 +45,8 @@ CREATE TABLE Book(
 	Quantity int NOT NULL,
 	Price float NOT NULL,
 	Author nvarchar(50) NOT NULL,
-	CategoryId int NOT NULL
+	CategoryId int NOT NULL,
+	ImageUrl nvarchar(500) NULL
 )
 GO
 
