@@ -143,5 +143,12 @@ namespace Team4.BookStore
                 }
             }
         }
+
+        private void UserManageButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserDetailWindow userDetail = new();
+            userDetail.ShowDialog();
+            AirConDataGrid.ItemsSource = _service.GetALLBook();
+        }
     }
 }

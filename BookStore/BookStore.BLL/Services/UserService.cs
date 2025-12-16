@@ -10,8 +10,6 @@ namespace BookStore.BLL.Services
 {
     public class UserService
     {
-        //ko có nhu cầu CRUD User
-        //Chỉ có nhu cầu login, authenticate()
         private UserRepo _repo = new();
         public User? Authenticate(string email)
         {

@@ -16,8 +16,6 @@
         <Button x:Name="SearchButton" Content="Search Book" HorizontalAlignment="Left" Height="50" Margin="75,162,0,0" VerticalAlignment="Top" Width="262" TabIndex="2" Style="{StaticResource RedButtonStyle}"/>
         <Label Content="Feature Function" HorizontalAlignment="Left" Height="45" Margin="388,169,0,0" VerticalAlignment="Top" Width="152" Foreground="#ff4500"/>
         <TextBox x:Name="FeatureFunctionTextBox" HorizontalAlignment="Left" Height="45" Margin="547,165,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="303" TabIndex="0"/>
-        <Label Content="Quantity" HorizontalAlignment="Left" Height="45" Margin="905,169,0,0" VerticalAlignment="Top" Width="108" Foreground="#ff4500"/>
-        <TextBox x:Name="QuantityTextBox" HorizontalAlignment="Left" Height="45" Margin="1003,165,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="185" TabIndex="1"/>
 
         <Button x:Name="CreateButton" Content="Create Book" HorizontalAlignment="Left" Height="50" Margin="1003,294,0,0" VerticalAlignment="Top" Width="185" TabIndex="3" Click="CreateButton_Click"/>
         <Button x:Name="UpdateButton" Content="Update Book" HorizontalAlignment="Left" Height="50" Margin="1003,367,0,0" VerticalAlignment="Top" Width="185
@@ -44,7 +42,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Label Content="© 2025 Kin" HorizontalAlignment="Left" Height="45" Margin="34,605,0,0" VerticalAlignment="Top" Width="182" Foreground="#ffff00"/>
+        <Button x:Name="UserManageButton" Content="User Manage" HorizontalAlignment="Left" Height="50" Margin="1003,235,0,0" VerticalAlignment="Top" Width="185" TabIndex="3" Click="UserManageButton_Click"/>
 
     </Grid>
 </Window>
