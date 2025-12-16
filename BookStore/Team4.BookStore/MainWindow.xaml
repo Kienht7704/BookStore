@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Team4.BookStore"
         mc:Ignorable="d"
-        Title="Thế Giới Sách Xứ F - ver.25-FA" Height="685" Width="1265" Background="#ff2800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded" >
+        Title="Thế Giới Sách Xứ F - ver.25-FA" Height="700" Width="1265" Background="#ff2800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded" >
     <Grid>
 
         <Label Content="Thế Giới Sách Xứ F" HorizontalAlignment="Left" Height="80" Margin="31,20,0,0" VerticalAlignment="Top" Width="569" FontWeight="Heavy" FontSize="50" FontStyle="Italic" Foreground="Yellow"/>
@@ -23,10 +23,45 @@
         <Button x:Name="DeleteButton" Content="Delete Book" HorizontalAlignment="Left" Height="50" Margin="1003,444,0,0" VerticalAlignment="Top" Width="185
                 " TabIndex="5" Click="DeleteButton_Click" />
         <Button x:Name="QuitButton" Content="Quit" HorizontalAlignment="Left" Height="50" Margin="1003,540,0,0" VerticalAlignment="Top" Width="185" TabIndex="6" />
-        
+
         <!-- Import/Export Excel Buttons -->
         <Button x:Name="ImportButton" Content="Import Excel" HorizontalAlignment="Left" Height="40" Margin="40,605,0,0" VerticalAlignment="Top" Width="120" Click="ImportButton_Click" Background="#4CAF50" Foreground="White" FontWeight="Bold"/>
         <Button x:Name="ExportButton" Content="Export Excel" HorizontalAlignment="Left" Height="40" Margin="170,605,0,0" VerticalAlignment="Top" Width="120" Click="ExportButton_Click" Background="#2196F3" Foreground="White" FontWeight="Bold"/>
+        
+        <Button x:Name="QRScanButton" 
+        Content="📱 Quét QR/Barcode" 
+        HorizontalAlignment="Left" 
+        Height="50" 
+        Margin="1003,605,0,0" 
+        VerticalAlignment="Top" 
+        Width="207" 
+        TabIndex="6" 
+        Click="QRScanButton_Click"
+        Background ="#2196F3"  RenderTransformOrigin="0.523,1.381"
+                Foreground="White"/>
+
+        <Button x:Name="GenerateQRButton" 
+        Content="📄 Tạo QR" 
+        HorizontalAlignment="Left" 
+        Height="50" 
+        Margin="785,605,0,0" 
+        VerticalAlignment="Top" 
+        Width="185" 
+        Click="GenerateQRButton_Click"
+                Background ="#2196F3"
+                Foreground="White"/>
+
+
+        <Button x:Name="GenerateBarcodeButton" 
+        Content="📊 Tạo Barcode" 
+        HorizontalAlignment="Left" 
+        Height="50" 
+        Margin="577,605,0,0" 
+        VerticalAlignment="Top" 
+        Width="185" 
+        Click="GenerateBarcodeButton_Click"
+                Background ="#2196F3"
+                Foreground="White"/>
 
         <DataGrid x:Name="AirConDataGrid" HorizontalAlignment="Left" Height="310" Margin="40,289,0,0" VerticalAlignment="Top" Width="930" AutoGenerateColumns="False" TabIndex="7" >
             <DataGrid.Columns>

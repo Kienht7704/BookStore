@@ -36,5 +36,12 @@ namespace BookStore.DAL.Repositories
             _ctx.Books.Update(obj);
             _ctx.SaveChanges();
         }
+
+        public Book? GetBookById(int bookId)
+        {
+            return _ctx.Books
+                .Include(b => b.Category)
+                .FirstOrDefault(b => b.BookId == bookId);
+        }
     }
 }

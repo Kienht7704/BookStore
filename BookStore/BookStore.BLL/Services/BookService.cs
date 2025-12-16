@@ -30,6 +30,11 @@ namespace BookStore.BLL.Services
                 _repo.Create(book);
             }
         }
+
+        public Book? GetBookById(int bookId)
+        {
+            return _repo.GetBookById(bookId);
+        }
     }
 }
 

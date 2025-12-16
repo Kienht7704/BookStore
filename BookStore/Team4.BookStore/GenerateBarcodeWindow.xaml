@@ -1,0 +1,63 @@
+﻿<Window x:Class="Team4.BookStore.GenerateBarcodeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Team4.BookStore"
+        mc:Ignorable="d"
+        Title="GenerateBarcodeWindow" Height="450" Width="800"
+        Background="#ff2800" WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title -->
+        <Label Grid.Row="0" Content="TẠO BARCODE CHO SÁCH" 
+               FontSize="35" FontWeight="Bold" 
+               Foreground="Yellow" HorizontalAlignment="Center"/>
+
+        <!-- Barcode Preview Area -->
+        <Border Grid.Row="1" Background="#ffff00" 
+                BorderBrush="#ff4500" BorderThickness="3" 
+                CornerRadius="10" Padding="20" Margin="0,20,0,75" Grid.RowSpan="2">
+            <StackPanel>
+                <!-- Barcode Image -->
+                <Border Background="White" Padding="20" 
+                        HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image x:Name="BarcodeImage" Height="150" Width="500" 
+                           Stretch="Uniform"/>
+                </Border>
+
+                <!-- Book Info -->
+                <TextBlock x:Name="BookInfoText" 
+                          TextAlignment="Center" 
+                          FontSize="18" FontWeight="Bold"
+                          Foreground="#ff4500" Margin="0,15,0,0"/>
+
+                <!-- Barcode Number -->
+                <TextBlock x:Name="BarcodeNumberText" 
+                          TextAlignment="Center" 
+                          FontSize="16" FontWeight="Bold"
+                          Foreground="#dc143c" Margin="0,10,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Action Buttons -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" 
+                    HorizontalAlignment="Center" Margin="0,15,0,0">
+            <Button Content="💾 Lưu Barcode" Width="150" Height="50" 
+                    Margin="10" Click="SaveButton_Click"/>
+            <Button Content="🖨️ In Barcode" Width="150" Height="50" 
+                    Margin="10" Click="PrintButton_Click"
+                    Style="{StaticResource RedButtonStyle}"/>
+            <Button Content="🔄 Tạo lại" Width="150" Height="50" 
+                    Margin="10" Click="RegenerateButton_Click"/>
+            <Button Content="❌ Đóng" Width="150" Height="50" 
+                    Margin="10" Click="CloseButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
