@@ -90,3 +90,7 @@ $RECYCLE.BIN/
 # SQL Server files (optional - uncomment if needed)
 # *.mdf
 # *.ldf
+
+# App Settings (contains connection strings)
+**/appsettings.json
+**/appsettings.*.json

@@ -7,6 +7,7 @@
 USE master
 GO
 
+<<<<<<< HEAD
 -- Drop database if exists
 DROP DATABASE IF EXISTS BookStoreDB;
 GO
@@ -21,6 +22,12 @@ GO
 -- ===================================================
 -- CREATE TABLES
 -- ===================================================
+=======
+USE BookStoreDB
+GO
+
+DROP DATABASE IF EXISTS BookStoreDB;
+>>>>>>> 6a50b5217d402ba7418bb5d9450f39e799016e68
 
 CREATE TABLE [User](
 	MemberID int PRIMARY KEY,
