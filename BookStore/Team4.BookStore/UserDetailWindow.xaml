@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Team4.BookStore"
         mc:Ignorable="d"
-        Title="UserDetailWindow" Height="450" Width="800">
+        Title="UserDetailWindow" Height="450" Width="800" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -14,7 +14,7 @@
 
         <!-- Form nhập liệu -->
         <Border Grid.Row="0" BorderBrush="#3498db" BorderThickness="2" 
-                CornerRadius="5" Padding="15" Margin="0,0,0,10">
+                CornerRadius="5" Padding="15" Margin="0,0,0,127" Grid.RowSpan="2">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -33,29 +33,29 @@
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="Member ID:" 
                            VerticalAlignment="Center" Margin="0,0,10,10" FontWeight="Bold"/>
                 <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtMemberId" 
-                         Margin="0,0,20,10" Height="25" IsReadOnly="True" Background="#ecf0f1"/>
+                         Margin="0,0,20,10" Height="25" IsReadOnly="True" Background="#ecf0f1" Foreground="Black" FontSize="15"/>
 
                 <!-- Full Name -->
                 <TextBlock Grid.Row="0" Grid.Column="2" Text="Họ và Tên:" 
                            VerticalAlignment="Center" Margin="0,0,10,10" FontWeight="Bold"/>
                 <TextBox Grid.Row="0" Grid.Column="3" x:Name="txtFullName" 
-                         Margin="0,0,0,10" Height="25"/>
+                         Margin="0,0,0,10" Height="25" Foreground="Black" FontSize="15"/>
 
                 <!-- Email -->
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Email:" 
-                           VerticalAlignment="Center" Margin="0,0,10,10" FontWeight="Bold"/>
+                           VerticalAlignment="Center" Margin="0,0,10,10" FontWeight="DemiBold"/>
                 <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtEmail" 
-                         Margin="0,0,20,10" Height="25"/>
+                         Margin="0,0,20,10" Height="25" Foreground="Black" FontSize="15"/>
 
                 <!-- Password -->
                 <TextBlock Grid.Row="1" Grid.Column="2" Text="Mật khẩu:" 
-                           VerticalAlignment="Center" Margin="0,0,10,10" FontWeight="Bold"/>
+                           VerticalAlignment="Center" Margin="0,0,10,10" FontWeight="DemiBold"/>
                 <PasswordBox Grid.Row="1" Grid.Column="3" x:Name="txtPassword" 
                              Margin="0,0,0,10" Height="25"/>
 
                 <!-- Role -->
                 <TextBlock Grid.Row="2" Grid.Column="0" Text="Vai trò:" 
-                           VerticalAlignment="Center" Margin="0,0,10,10" FontWeight="Bold"/>
+                           VerticalAlignment="Center" Margin="0,0,10,10" FontWeight="DemiBold"/>
                 <ComboBox Grid.Row="2" Grid.Column="1" x:Name="cboRole" 
                           Margin="0,0,20,10" Height="25">
                     <ComboBoxItem Content="Admin"/>
@@ -65,36 +65,13 @@
 
                 <!-- Buttons -->
                 <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" 
-                            Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-                    <Button x:Name="btnAdd" Content="Thêm" Width="100" Height="35" 
-                            Margin="5" Background="#27ae60" Foreground="White" 
-                            FontWeight="Bold" Click="BtnAdd_Click"/>
-                    <Button x:Name="btnUpdate" Content="Cập nhật" Width="100" Height="35" 
-                            Margin="5" Background="#f39c12" Foreground="White" 
-                            FontWeight="Bold" Click="BtnUpdate_Click"/>
-                    <Button x:Name="btnDelete" Content="Xóa" Width="100" Height="35" 
-                            Margin="5" Background="#e74c3c" Foreground="White" 
-                            FontWeight="Bold" Click="BtnDelete_Click"/>
-                    <Button x:Name="btnClear" Content="Làm mới" Width="100" Height="35" 
-                            Margin="5" Background="#95a5a6" Foreground="White" 
-                            FontWeight="Bold"/>
-                </StackPanel>
+                            Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0"/>
             </Grid>
         </Border>
+        <Button x:Name="btnSave" Content="Lưu" 
+            Background="#27ae60" Foreground="White" 
+            FontWeight="Bold" Margin="636,292,24,75" Grid.RowSpan="2" Click="btnSave_Click"/>
 
         <!-- DataGrid -->
-        <Border Grid.Row="1" BorderBrush="#3498db" BorderThickness="2" 
-                CornerRadius="5" Padding="10">
-            <DataGrid x:Name="dgUsers" AutoGenerateColumns="False" 
-                      IsReadOnly="True" SelectionMode="Single"
-                      AlternatingRowBackground="#ecf0f1">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Member ID" Binding="{Binding MemberId}" Width="100"/>
-                    <DataGridTextColumn Header="Họ và Tên" Binding="{Binding FullName}" Width="*"/>
-                    <DataGridTextColumn Header="Email" Binding="{Binding EmailAddress}" Width="*"/>
-                    <DataGridTextColumn Header="Vai trò" Binding="{Binding Role}" Width="120"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </Border>
     </Grid>
 </Window>

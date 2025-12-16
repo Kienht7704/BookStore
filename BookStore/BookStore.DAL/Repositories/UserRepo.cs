@@ -23,5 +23,41 @@ namespace BookStore.DAL.Repositories
             _cxt = new();
             return _cxt.Users.FirstOrDefault(x => x.EmailAddress.ToLower() == email.ToLower() && x.Password == pass);
         }
+        public List<User> getAll()
+        {
+            _cxt = new();
+            return _cxt.Users.ToList();
+        }
+        public void AddNew(User user)
+        {
+            _cxt = new();
+            _cxt.Users.Add(user);
+            _cxt.SaveChanges();
+        }
+        public void Update(User user)
+        {
+            _cxt = new();
+            _cxt.Users.Update(user);
+            _cxt.SaveChanges();
+        }
+        public void Delete(User user)
+        {
+            _cxt = new();
+            _cxt.Users.Remove(user);
+            _cxt.SaveChanges();
+        }
+        public int AutoGenerateMemberID()
+        {
+            _cxt = new();
+            if (_cxt.Users.Count() == 0)
+            {
+                return 1;
+            }
+            else
+            {
+                return _cxt.Users.Max(u => u.MemberId) + 1;
+            }
+        }
+
     }
 }

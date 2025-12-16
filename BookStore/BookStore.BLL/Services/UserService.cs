@@ -20,5 +20,25 @@ namespace BookStore.BLL.Services
         {
             return _repo.GetOne(email, pass);
         }
+        public List<User> GetAllUsers()
+        {
+            return _repo.getAll();
+        }
+        public void AddUser(User user)
+        {
+            _repo.AddNew(user);
+        }
+        public void UpdateUser(User user)
+        {
+            _repo.Update(user);
+        }
+        public void DeleteUser(User user)
+        {
+            _repo.Delete(user);
+        }
+        public int AutoGenerateMemberID()
+        {
+            return _repo.AutoGenerateMemberID();
+        }
     }
 }

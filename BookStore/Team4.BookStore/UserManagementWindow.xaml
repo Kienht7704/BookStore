@@ -1,0 +1,64 @@
+﻿<Window x:Class="Team4.BookStore.UserManagementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Team4.BookStore"
+        mc:Ignorable="d"
+        Title="UserManagementWindow" Height="450" Width="800" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Form nhập liệu -->
+        <Border Grid.Row="0" BorderBrush="#3498db" BorderThickness="2" 
+            CornerRadius="5" Padding="15" Margin="114,69,150,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Buttons -->
+                <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" 
+                        Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                    <Button x:Name="btnAdd" Content="Thêm" Width="100" Height="35" 
+                        Margin="5" Background="#27ae60" Foreground="White" 
+                        FontWeight="Bold" Click="btnAdd_Click" />
+                    <Button x:Name="btnUpdate" Content="Cập nhật" Width="100" Height="35" 
+                        Margin="5" Background="#f39c12" Foreground="White" 
+                        FontWeight="Bold" Click="btnUpdate_Click" />
+                    <Button x:Name="btnDelete" Content="Xóa" Width="100" Height="35" 
+                        Margin="5" Background="#e74c3c" Foreground="White" 
+                        FontWeight="Bold" Click="btnDelete_Click" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- DataGrid -->
+        <Border Grid.Row="1" BorderBrush="#3498db" BorderThickness="2" 
+            CornerRadius="5" Padding="10" Margin="0,10,0,0">
+            <DataGrid x:Name="dgUsers" AutoGenerateColumns="False" 
+                  IsReadOnly="True" SelectionMode="Single"
+                  AlternatingRowBackground="#ecf0f1" Margin="0,34,0,0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Member ID" Binding="{Binding MemberId}" Width="100"/>
+                    <DataGridTextColumn Header="Họ và Tên" Binding="{Binding FullName}" Width="*"/>
+                    <DataGridTextColumn Header="Email" Binding="{Binding EmailAddress}" Width="*"/>
+                    <DataGridTextColumn Header="Vai trò" Binding="{Binding Role}" Width="120"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+        <Label Content="Quản lý người dùng" HorizontalAlignment="Left" Height="64" Margin="10,0,0,0" VerticalAlignment="Top" Width="328" FontSize="25"/>
+    </Grid>
+</Window>
