@@ -1,17 +1,13 @@
 using BookStore.DAL.Entities;
-using iText.Kernel.Pdf;
-using iText.Layout;
-using iText.Layout.Element;
-using iText.Layout.Properties;
-using iText.Kernel.Font;
-using iText.IO.Font.Constants;
+using PdfSharp.Drawing;
+using PdfSharp.Pdf;
 using System;
 using System.IO;
 
 namespace BookStore.BLL.Services
 {
     /// <summary>
-    /// Service for generating PDF receipts
+    /// Service for generating PDF receipts using PdfSharp
     /// </summary>
     public class ReceiptService
     {
@@ -20,155 +16,111 @@ namespace BookStore.BLL.Services
         /// </summary>
         public void GenerateReceiptPDF(Invoice invoice, string filePath)
         {
-            using (PdfWriter writer = new PdfWriter(filePath))
-            using (PdfDocument pdf = new PdfDocument(writer))
-            using (Document document = new Document(pdf))
+            // Create a new PDF document
+            PdfDocument document = new PdfDocument();
+            document.Info.Title = "Receipt - INV-" + invoice.InvoiceId.ToString("D6");
+
+            // Create a page
+            PdfPage page = document.AddPage();
+            page.Width = XUnit.FromMillimeter(80); // Receipt width (80mm)
+            page.Height = XUnit.FromMillimeter(200); // Receipt height
+
+            XGraphics gfx = XGraphics.FromPdfPage(page);
+
+            // Fonts
+            XFont titleFont = new XFont("Arial", 14, XFontStyleEx.Bold);
+            XFont headerFont = new XFont("Arial", 10, XFontStyleEx.Bold);
+            XFont regularFont = new XFont("Arial", 9, XFontStyleEx.Regular);
+            XFont smallFont = new XFont("Arial", 7, XFontStyleEx.Regular);
+
+            double y = 20;
+            double lineHeight = 14;
+            double pageWidth = page.Width.Point;
+            double margin = 10;
+
+            // --- Header ---
+            gfx.DrawString("BOOKSTORE", titleFont, XBrushes.Black,
+                new XRect(0, y, pageWidth, lineHeight), XStringFormats.TopCenter);
+            y += lineHeight + 5;
+
+            gfx.DrawString("The Gioi Sach Xu F", regularFont, XBrushes.Black,
+                new XRect(0, y, pageWidth, lineHeight), XStringFormats.TopCenter);
+            y += lineHeight + 10;
+
+            // --- Invoice Info ---
+            gfx.DrawString("Invoice #: INV-" + invoice.InvoiceId.ToString("D6"), regularFont, XBrushes.Black,
+                new XRect(margin, y, pageWidth - margin * 2, lineHeight), XStringFormats.TopLeft);
+            y += lineHeight;
+
+            gfx.DrawString("Date: " + invoice.InvoiceDate.ToString("yyyy-MM-dd HH:mm"), regularFont, XBrushes.Black,
+                new XRect(margin, y, pageWidth - margin * 2, lineHeight), XStringFormats.TopLeft);
+            y += lineHeight;
+
+            string staffName = invoice.Staff != null ? invoice.Staff.FullName : "N/A";
+            gfx.DrawString("Staff: " + staffName, regularFont, XBrushes.Black,
+                new XRect(margin, y, pageWidth - margin * 2, lineHeight), XStringFormats.TopLeft);
+            y += lineHeight + 10;
+
+            // --- Separator ---
+            gfx.DrawLine(XPens.Black, margin, y, pageWidth - margin, y);
+            y += 10;
+
+            // --- Items Header ---
+            gfx.DrawString("Item", headerFont, XBrushes.Black, new XRect(margin, y, 100, lineHeight), XStringFormats.TopLeft);
+            gfx.DrawString("Qty", headerFont, XBrushes.Black, new XRect(pageWidth - 80, y, 25, lineHeight), XStringFormats.TopLeft);
+            gfx.DrawString("Total", headerFont, XBrushes.Black, new XRect(pageWidth - 50, y, 40, lineHeight), XStringFormats.TopLeft);
+            y += lineHeight + 5;
+
+            // --- Items ---
+            if (invoice.InvoiceDetails != null)
             {
-                // Set up fonts
-                PdfFont boldFont = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD);
-                PdfFont regularFont = PdfFontFactory.CreateFont(StandardFonts.HELVETICA);
-
-                // Header
-                document.Add(new Paragraph("BOOKSTORE - THE GIOI SACH XU F")
-                    .SetFont(boldFont)
-                    .SetFontSize(18)
-                    .SetTextAlignment(TextAlignment.CENTER));
-
-                document.Add(new Paragraph("RECEIPT / INVOICE")
-                    .SetFont(boldFont)
-                    .SetFontSize(14)
-                    .SetTextAlignment(TextAlignment.CENTER)
-                    .SetMarginBottom(20));
-
-                // Invoice Info
-                document.Add(new Paragraph($"Invoice #: INV-{invoice.InvoiceId:D6}")
-                    .SetFont(regularFont)
-                    .SetFontSize(10));
-
-                document.Add(new Paragraph($"Date: {invoice.InvoiceDate:yyyy-MM-dd HH:mm}")
-                    .SetFont(regularFont)
-                    .SetFontSize(10));
-
-                document.Add(new Paragraph($"Staff: {invoice.Staff?.FullName ?? "N/A"}")
-                    .SetFont(regularFont)
-                    .SetFontSize(10)
-                    .SetMarginBottom(15));
-
-                // Separator
-                document.Add(new Paragraph("─────────────────────────────────────────")
-                    .SetTextAlignment(TextAlignment.CENTER)
-                    .SetMarginBottom(10));
-
-                // Items Table
-                Table table = new Table(new float[] { 4, 1, 2, 2 });
-                table.SetWidth(UnitValue.CreatePercentValue(100));
-
-                // Table Header
-                table.AddHeaderCell(new Cell().Add(new Paragraph("Item").SetFont(boldFont).SetFontSize(10)));
-                table.AddHeaderCell(new Cell().Add(new Paragraph("Qty").SetFont(boldFont).SetFontSize(10)));
-                table.AddHeaderCell(new Cell().Add(new Paragraph("Price").SetFont(boldFont).SetFontSize(10)));
-                table.AddHeaderCell(new Cell().Add(new Paragraph("Subtotal").SetFont(boldFont).SetFontSize(10)));
-
-                // Table Items
-                if (invoice.InvoiceDetails != null)
+                foreach (var detail in invoice.InvoiceDetails)
                 {
-                    foreach (var detail in invoice.InvoiceDetails)
-                    {
-                        string bookName = detail.Book?.BookName ?? $"Book #{detail.BookId}";
-                        // Truncate long names
-                        if (bookName.Length > 30) bookName = bookName.Substring(0, 27) + "...";
+                    string bookName = detail.Book != null ? detail.Book.BookName : "Book #" + detail.BookId;
+                    if (bookName.Length > 18) bookName = bookName.Substring(0, 15) + "...";
 
-                        table.AddCell(new Cell().Add(new Paragraph(bookName).SetFont(regularFont).SetFontSize(9)));
-                        table.AddCell(new Cell().Add(new Paragraph(detail.Quantity.ToString()).SetFont(regularFont).SetFontSize(9)));
-                        table.AddCell(new Cell().Add(new Paragraph($"${detail.UnitPrice:F2}").SetFont(regularFont).SetFontSize(9)));
-                        table.AddCell(new Cell().Add(new Paragraph($"${detail.Subtotal:F2}").SetFont(regularFont).SetFontSize(9)));
-                    }
+                    gfx.DrawString(bookName, regularFont, XBrushes.Black, 
+                        new XRect(margin, y, 100, lineHeight), XStringFormats.TopLeft);
+                    gfx.DrawString(detail.Quantity.ToString(), regularFont, XBrushes.Black, 
+                        new XRect(pageWidth - 80, y, 25, lineHeight), XStringFormats.TopLeft);
+                    gfx.DrawString("$" + detail.Subtotal.ToString("F2"), regularFont, XBrushes.Black, 
+                        new XRect(pageWidth - 50, y, 40, lineHeight), XStringFormats.TopLeft);
+                    y += lineHeight;
                 }
-
-                document.Add(table);
-                document.Add(new Paragraph().SetMarginBottom(10));
-
-                // Separator
-                document.Add(new Paragraph("─────────────────────────────────────────")
-                    .SetTextAlignment(TextAlignment.CENTER)
-                    .SetMarginBottom(5));
-
-                // Totals
-                document.Add(new Paragraph($"TOTAL: ${invoice.TotalAmount:F2}")
-                    .SetFont(boldFont)
-                    .SetFontSize(14)
-                    .SetTextAlignment(TextAlignment.RIGHT)
-                    .SetMarginBottom(10));
-
-                document.Add(new Paragraph($"Payment Method: {invoice.PaymentMethod}")
-                    .SetFont(regularFont)
-                    .SetFontSize(10)
-                    .SetTextAlignment(TextAlignment.RIGHT));
-
-                document.Add(new Paragraph($"Status: {invoice.Status}")
-                    .SetFont(regularFont)
-                    .SetFontSize(10)
-                    .SetTextAlignment(TextAlignment.RIGHT)
-                    .SetMarginBottom(20));
-
-                // Separator
-                document.Add(new Paragraph("─────────────────────────────────────────")
-                    .SetTextAlignment(TextAlignment.CENTER)
-                    .SetMarginBottom(10));
-
-                // Footer
-                document.Add(new Paragraph("Thank you for your purchase!")
-                    .SetFont(boldFont)
-                    .SetFontSize(12)
-                    .SetTextAlignment(TextAlignment.CENTER));
-
-                document.Add(new Paragraph("Please come again!")
-                    .SetFont(regularFont)
-                    .SetFontSize(10)
-                    .SetTextAlignment(TextAlignment.CENTER)
-                    .SetMarginBottom(10));
-
-                document.Add(new Paragraph($"© 2025 Kin - Team 4 BookStore")
-                    .SetFont(regularFont)
-                    .SetFontSize(8)
-                    .SetTextAlignment(TextAlignment.CENTER));
             }
-        }
+            y += 5;
 
-        /// <summary>
-        /// Generate receipt and return as byte array (for preview or direct printing)
-        /// </summary>
-        public byte[] GenerateReceiptBytes(Invoice invoice)
-        {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                using (PdfWriter writer = new PdfWriter(ms))
-                using (PdfDocument pdf = new PdfDocument(writer))
-                using (Document document = new Document(pdf))
-                {
-                    // Same content as GenerateReceiptPDF...
-                    PdfFont boldFont = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD);
-                    PdfFont regularFont = PdfFontFactory.CreateFont(StandardFonts.HELVETICA);
+            // --- Separator ---
+            gfx.DrawLine(XPens.Black, margin, y, pageWidth - margin, y);
+            y += 10;
 
-                    document.Add(new Paragraph("BOOKSTORE - THE GIOI SACH XU F")
-                        .SetFont(boldFont)
-                        .SetFontSize(18)
-                        .SetTextAlignment(TextAlignment.CENTER));
+            // --- Total ---
+            gfx.DrawString("TOTAL: $" + invoice.TotalAmount.ToString("F2"), headerFont, XBrushes.Black,
+                new XRect(margin, y, pageWidth - margin * 2, lineHeight), XStringFormats.TopRight);
+            y += lineHeight + 5;
 
-                    document.Add(new Paragraph($"Invoice #: INV-{invoice.InvoiceId:D6}")
-                        .SetFont(regularFont)
-                        .SetFontSize(10));
+            gfx.DrawString("Payment: " + invoice.PaymentMethod, regularFont, XBrushes.Black,
+                new XRect(margin, y, pageWidth - margin * 2, lineHeight), XStringFormats.TopRight);
+            y += lineHeight + 15;
 
-                    document.Add(new Paragraph($"Date: {invoice.InvoiceDate:yyyy-MM-dd HH:mm}")
-                        .SetFont(regularFont)
-                        .SetFontSize(10));
+            // --- Separator ---
+            gfx.DrawLine(XPens.Black, margin, y, pageWidth - margin, y);
+            y += 10;
 
-                    document.Add(new Paragraph($"TOTAL: ${invoice.TotalAmount:F2}")
-                        .SetFont(boldFont)
-                        .SetFontSize(14));
-                }
-                return ms.ToArray();
-            }
+            // --- Footer ---
+            gfx.DrawString("Thank you for your purchase!", headerFont, XBrushes.Black,
+                new XRect(0, y, pageWidth, lineHeight), XStringFormats.TopCenter);
+            y += lineHeight;
+
+            gfx.DrawString("Please come again!", regularFont, XBrushes.Black,
+                new XRect(0, y, pageWidth, lineHeight), XStringFormats.TopCenter);
+            y += lineHeight + 10;
+
+            gfx.DrawString("(c) 2025 Kin - Team 4 BookStore", smallFont, XBrushes.Black,
+                new XRect(0, y, pageWidth, lineHeight), XStringFormats.TopCenter);
+
+            // Save the document
+            document.Save(filePath);
         }
     }
 }

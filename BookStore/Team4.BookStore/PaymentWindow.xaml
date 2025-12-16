@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Payment" Height="650" Width="550" 
+        Title="Payment" Height="750" Width="550" 
         Background="#1a1a2e" WindowStartupLocation="CenterOwner" 
         ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True"
         Loaded="Window_Loaded">
@@ -92,11 +92,17 @@
             <Border x:Name="QRCodePanel" Grid.Row="3" Visibility="Collapsed" 
                     Background="#1a1a2e" CornerRadius="10" Padding="20" Margin="0,0,0,10">
                 <StackPanel HorizontalAlignment="Center">
-                    <Border Width="150" Height="150" Background="White" CornerRadius="10" Margin="0,0,0,10">
-                        <TextBlock Text="[QR CODE]" FontSize="16" Foreground="#333" 
-                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Border Width="180" Height="180" Background="White" CornerRadius="10" Margin="0,0,0,10" Padding="10">
+                        <Grid>
+                            <!-- Simulated QR pattern -->
+                            <Border Background="#1a1a2e" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="3"/>
+                            <Border Background="#1a1a2e" Width="20" Height="20" HorizontalAlignment="Right" VerticalAlignment="Top" CornerRadius="3"/>
+                            <Border Background="#1a1a2e" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" CornerRadius="3"/>
+                            <TextBlock Text="📱 QR" FontSize="28" FontWeight="Bold" Foreground="#1a1a2e" 
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
                     </Border>
-                    <TextBlock Text="Scan to pay (simulated)" FontSize="12" Foreground="#888" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Scan to pay (simulated)" FontSize="14" Foreground="#4ecca3" HorizontalAlignment="Center" FontWeight="SemiBold"/>
                 </StackPanel>
             </Border>
 
