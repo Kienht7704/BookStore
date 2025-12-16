@@ -5,36 +5,36 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:local="clr-namespace:Team4.BookStore"
         mc:Ignorable="d"
-        Title="Air Conditioner Detail" Height="755" Width="1150" Background="#ff2800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" >
+        Title="Book Detail" Height="755" Width="1150" Background="#ff2800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" >
     <Grid>
-        <Label x:Name="DetailTitleLable" Content="Create | Update Air Conditioner" HorizontalAlignment="Left" Height="80" Margin="38,20,0,0" VerticalAlignment="Top" Width="814" FontWeight="Heavy" FontSize="40" FontStyle="Italic" Foreground="Yellow"/>
+        <Label x:Name="DetailTitleLable" Content="Create | Update Book" HorizontalAlignment="Left" Height="80" Margin="38,20,0,0" VerticalAlignment="Top" Width="814" FontWeight="Heavy" FontSize="40" FontStyle="Italic" Foreground="Yellow"/>
 
         <Rectangle HorizontalAlignment="Left" Height="565" Margin="38,128,0,0" Stroke="Black" VerticalAlignment="Top" Width="875" Fill="#ffff00" RadiusX="10" RadiusY="10" />
 
-        <Label Content="Book ID" HorizontalAlignment="Left" Height="45" Margin="58,155,0,0" VerticalAlignment="Top" Width="107" Foreground="#ff4500"/>
-        <TextBox x:Name="BookIdTextBox" HorizontalAlignment="Left" Height="45" Margin="223,153,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="275" TabIndex="0"/>
+        <Label Content="Book ID" HorizontalAlignment="Left" Height="45" Margin="58,136,0,0" VerticalAlignment="Top" Width="107" Foreground="#ff4500"/>
+        <TextBox x:Name="BookIdTextBox" HorizontalAlignment="Left" Height="45" Margin="217,136,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="275" TabIndex="0"/>
 
-        <Label Content="Book Name" HorizontalAlignment="Left" Height="45" Margin="58,218,0,0" VerticalAlignment="Top" Width="147" Foreground="#ff4500"/>
-        <TextBox x:Name="BookNameTextBox" HorizontalAlignment="Left" Height="45" Margin="223,216,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="635" TabIndex="1"/>
+        <Label Content="Book Name" HorizontalAlignment="Left" Height="44" Margin="54,194,0,0" VerticalAlignment="Top" Width="148" Foreground="#ff4500"/>
+        <TextBox x:Name="BookNameTextBox" HorizontalAlignment="Left" Height="45" Margin="217,194,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="635" TabIndex="1"/>
 
         <Label Content="Description" HorizontalAlignment="Left" Height="45" Margin="58,284,0,0" VerticalAlignment="Top" Width="107" Foreground="#ff4500"/>
-        <TextBox x:Name="DescriptionTextBox" HorizontalAlignment="Left" Height="45" Margin="223,283,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="635" TabIndex="2"/>
+        <TextBox x:Name="DescriptionTextBox" HorizontalAlignment="Left" Height="105" Margin="217,254,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="378" TabIndex="4" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" VerticalContentAlignment="Top"/>
 
-        <Label Content="PublicationDate" HorizontalAlignment="Left" Height="45" Margin="58,351,0,0" VerticalAlignment="Top" Width="128" Foreground="#ff4500"/>
-        <TextBox x:Name="PublicationDateTextBox" HorizontalAlignment="Left" Height="45" Margin="223,351,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="635" TabIndex="3"/>
+        <Label Content="PublicationDate" HorizontalAlignment="Left" Height="45" Margin="53,388,0,0" VerticalAlignment="Top" Width="145" Foreground="#ff4500"/>
+        <TextBox x:Name="PublicationDateTextBox" HorizontalAlignment="Left" Height="45" Margin="217,388,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="635" TabIndex="3"/>
 
-        <Label Content="Quantity" HorizontalAlignment="Left" Height="45" Margin="58,422,0,0" VerticalAlignment="Top" Width="157" Foreground="#ff4500"/>
-        <TextBox x:Name="QuantityTextBox" HorizontalAlignment="Left" Height="105" Margin="223,421,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="377" TabIndex="4" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" VerticalContentAlignment="Top"/>
+        <Label Content="Quantity" HorizontalAlignment="Left" Height="45" Margin="53,472,0,0" VerticalAlignment="Top" Width="157" Foreground="#ff4500"/>
+        <TextBox x:Name="QuantityTextBox" HorizontalAlignment="Left" Height="45" Margin="217,472,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="635" TabIndex="2" RenderTransformOrigin="0.499,0.542"/>
 
         <Label Content="Price" HorizontalAlignment="Left" Height="45" Margin="58,550,0,0" VerticalAlignment="Top" Width="140" Foreground="#ff4500"/>
-        <TextBox x:Name="PriceTextBox" HorizontalAlignment="Left" Height="45" Margin="223,547,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="227" TabIndex="5"/>
+        <TextBox x:Name="PriceTextBox" HorizontalAlignment="Left" Height="45" Margin="217,549,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="227" TabIndex="5"/>
 
         <Label Content="Author" HorizontalAlignment="Left" Height="45" Margin="516,552,0,0" VerticalAlignment="Top" Width="107" Foreground="#ff4500"/>
         <TextBox x:Name="AuthorTextBox" HorizontalAlignment="Left" Height="45" Margin="615,549,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="244" TabIndex="6"/>
 
         <Label Content="Category ID" HorizontalAlignment="Left" Height="45" Margin="58,615,0,0" VerticalAlignment="Top" Width="147" Foreground="#ff4500"/>
 
-        <Button x:Name="SaveButton" Content="Save Air Con" HorizontalAlignment="Left" Height="50" Margin="945,128,0,0" VerticalAlignment="Top" Width="165" TabIndex="8" Click="SaveButton_Click" />
+        <Button x:Name="SaveButton" Content="Save Book" HorizontalAlignment="Left" Height="50" Margin="945,128,0,0" VerticalAlignment="Top" Width="165" TabIndex="8" Click="SaveButton_Click" />
         <Button x:Name="CloseButton" Content="Close" HorizontalAlignment="Left" Height="50" Margin="945,208,0,0" VerticalAlignment="Top" Width="165" TabIndex="9" />
         <ComboBox x:Name="CategoryIdComboBox" HorizontalAlignment="Left" Height="45" Margin="223,615,0,0" VerticalAlignment="Top" Width="377"/>
 
