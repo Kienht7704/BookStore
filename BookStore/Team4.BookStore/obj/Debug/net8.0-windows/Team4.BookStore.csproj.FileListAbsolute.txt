@@ -88,3 +88,9 @@ D:\SRC\PRN212\Assigment\BookShop\BookStore\Team4.BookStore\obj\Debug\net8.0-wind
 D:\SRC\PRN212\Assigment\BookShop\BookStore\Team4.BookStore\obj\Debug\net8.0-windows\Team4.BookStore.pdb
 D:\SRC\PRN212\Assigment\BookShop\BookStore\Team4.BookStore\obj\Debug\net8.0-windows\Team4.BookStore.genruntimeconfig.cache
 D:\SRC\PRN212\Assigment\BookShop\BookStore\Team4.BookStore\obj\Debug\net8.0-windows\ref\Team4.BookStore.dll
+D:\SRC\PRN212\Assigment\BookShop\BookStore\Team4.BookStore\obj\Debug\net8.0-windows\DetailWindow.g.cs
+D:\SRC\PRN212\Assigment\BookShop\BookStore\Team4.BookStore\obj\Debug\net8.0-windows\LoginWindow.g.cs
+D:\SRC\PRN212\Assigment\BookShop\BookStore\Team4.BookStore\bin\Debug\net8.0-windows\appsettings.json
+D:\SRC\PRN212\Assigment\BookShop\BookStore\Team4.BookStore\obj\Debug\net8.0-windows\App.baml
+D:\SRC\PRN212\Assigment\BookShop\BookStore\Team4.BookStore\obj\Debug\net8.0-windows\DetailWindow.baml
+D:\SRC\PRN212\Assigment\BookShop\BookStore\Team4.BookStore\obj\Debug\net8.0-windows\LoginWindow.baml
