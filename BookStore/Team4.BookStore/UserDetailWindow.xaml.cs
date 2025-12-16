@@ -23,6 +23,7 @@ namespace Team4.BookStore
     {
         public User X { get; set; }
         private UserService _ctx = new();
+        private RoleService _roleService = new();
         public UserDetailWindow()
         {
             InitializeComponent();
@@ -30,6 +31,9 @@ namespace Team4.BookStore
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            cboRole.ItemsSource = _roleService.GetAllRoles();
+            cboRole.DisplayMemberPath = "RoleName";
+            cboRole.SelectedValuePath = "RoleId";
             if (X != null)
             {
                 txtMemberId.Text = X.MemberId.ToString();
@@ -37,7 +41,8 @@ namespace Team4.BookStore
                 txtFullName.Text = X.FullName;
                 txtEmail.Text = X.EmailAddress;
                 txtPassword.Password = X.Password;
-                cboRole.Text = X.Role.ToString();
+                txtEmail.IsEnabled = false;
+                cboRole.SelectedValue = X.RoleId;
             }
             else
             {
@@ -52,7 +57,7 @@ namespace Team4.BookStore
             newUser.FullName = txtFullName.Text;
             newUser.EmailAddress = txtEmail.Text;
             newUser.Password = txtPassword.Password;
-            //newUser.Role = int.Parse(cboRole.Text);
+            newUser.RoleId = (int)cboRole.SelectedValue;
             if (X != null)
             {
                 _ctx.UpdateUser(newUser);

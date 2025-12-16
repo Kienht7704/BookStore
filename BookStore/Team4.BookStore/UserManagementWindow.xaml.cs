@@ -43,7 +43,7 @@ namespace Team4.BookStore
             User selected = dgUsers.SelectedItem as User;
             if (selected == null)
             {
-                MessageBox.Show("Please select a user to update.", "No User Selected", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Vui lòng chọn người dùng cần cập nhật.", "No User Selected", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             UserDetailWindow detail = new();
@@ -57,10 +57,10 @@ namespace Team4.BookStore
             User selected = dgUsers.SelectedItem as User;
             if (selected == null)
             {
-                MessageBox.Show("Please select a user to delete.", "No User Selected", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Vui lòng chọn người dùng cần xóa.", "No User Selected", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            MessageBoxResult result = MessageBox.Show($"Are you sure you want to delete user '{selected.FullName}'?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult result = MessageBox.Show($"Bạn có chắc muốn xóa người dùng? '{selected.FullName}'?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.No)
             {
                 return;
