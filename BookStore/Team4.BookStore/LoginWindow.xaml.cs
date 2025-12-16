@@ -75,7 +75,7 @@ namespace Team4.BookStore
             MainWindow main = new();
             main.X = acc; //X bên Main đã trỏ cùng vào acc bên login rồi
             main.Show();
-            Hide(); // ẩn chính login đi , không được tắt
+            Close(); // đóng login window để app có thể tắt đúng cách
         }
     }
 }
