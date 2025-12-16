@@ -1,4 +1,5 @@
 ﻿using BookStore.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace BookStore.DAL.Repositories
         public List<User> getAll()
         {
             _cxt = new();
-            return _cxt.Users.ToList();
+            return _cxt.Users.Include("Role").ToList();
         }
         public void AddNew(User user)
         {

@@ -35,7 +35,7 @@ namespace Team4.BookStore
             HelloMsgLabel.Content = "Hello, " + X.FullName;
 
             //phân quyền nút bấm
-            if (X.Role == 2)
+            if (X.RoleId != 1)
             {
                 CreateButton.IsEnabled = false;
                 UpdateButton.IsEnabled = false;

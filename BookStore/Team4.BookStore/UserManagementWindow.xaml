@@ -55,7 +55,7 @@
                     <DataGridTextColumn Header="Member ID" Binding="{Binding MemberId}" Width="100"/>
                     <DataGridTextColumn Header="Họ và Tên" Binding="{Binding FullName}" Width="*"/>
                     <DataGridTextColumn Header="Email" Binding="{Binding EmailAddress}" Width="*"/>
-                    <DataGridTextColumn Header="Vai trò" Binding="{Binding Role}" Width="120"/>
+                    <DataGridTextColumn Header="Vai trò" Binding="{Binding Role.RoleName}" Width="120"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Border>

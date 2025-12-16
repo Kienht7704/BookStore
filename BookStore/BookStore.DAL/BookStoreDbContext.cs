@@ -21,6 +21,8 @@ public partial class BookStoreDbContext : DbContext
 
     public virtual DbSet<Category> Categories { get; set; }
 
+    public virtual DbSet<Role> Roles { get; set; }
+
     public virtual DbSet<User> Users { get; set; }
 
     private string GetConnectionString()
@@ -30,17 +32,16 @@ public partial class BookStoreDbContext : DbContext
                     .AddJsonFile("appsettings.json", true, true)
                     .Build();
         var strConn = config["ConnectionStrings:DefaultConnectionStringDB"];
-
         return strConn;
     }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer(GetConnectionString());
+=> optionsBuilder.UseSqlServer(GetConnectionString());
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Book>(entity =>
         {
-            entity.HasKey(e => e.BookId).HasName("PK__Book__3DE0C2070517147C");
+            entity.HasKey(e => e.BookId).HasName("PK__Book__3DE0C2074F614029");
 
             entity.ToTable("Book");
 
@@ -48,8 +49,8 @@ public partial class BookStoreDbContext : DbContext
             entity.Property(e => e.Author).HasMaxLength(50);
             entity.Property(e => e.BookName).HasMaxLength(100);
             entity.Property(e => e.Description).HasMaxLength(1000);
-            entity.Property(e => e.PublicationDate).HasColumnType("datetime");
             entity.Property(e => e.ImageUrl).HasMaxLength(500);
+            entity.Property(e => e.PublicationDate).HasColumnType("datetime");
 
             entity.HasOne(d => d.Category).WithMany(p => p.Books)
                 .HasForeignKey(d => d.CategoryId)
@@ -59,7 +60,7 @@ public partial class BookStoreDbContext : DbContext
 
         modelBuilder.Entity<Category>(entity =>
         {
-            entity.HasKey(e => e.CategoryId).HasName("PK__Category__19093A0B99E0BAC6");
+            entity.HasKey(e => e.CategoryId).HasName("PK__Category__19093A0BE06AADB5");
 
             entity.ToTable("Category");
 
@@ -68,9 +69,19 @@ public partial class BookStoreDbContext : DbContext
             entity.Property(e => e.Description).HasMaxLength(500);
         });
 
+        modelBuilder.Entity<Role>(entity =>
+        {
+            entity.HasKey(e => e.RoleId).HasName("PK__Role__8AFACE1A13BBB581");
+
+            entity.ToTable("Role");
+
+            entity.Property(e => e.RoleId).ValueGeneratedNever();
+            entity.Property(e => e.RoleName).HasMaxLength(50);
+        });
+
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.MemberId).HasName("PK__User__0CF04B38C373FE03");
+            entity.HasKey(e => e.MemberId).HasName("PK__User__0CF04B380605354F");
 
             entity.ToTable("User");
 
@@ -80,6 +91,11 @@ public partial class BookStoreDbContext : DbContext
             entity.Property(e => e.EmailAddress).HasMaxLength(150);
             entity.Property(e => e.FullName).HasMaxLength(100);
             entity.Property(e => e.Password).HasMaxLength(50);
+
+            entity.HasOne(d => d.Role).WithMany(p => p.Users)
+                .HasForeignKey(d => d.RoleId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_User_Role");
         });
 
         OnModelCreatingPartial(modelBuilder);
