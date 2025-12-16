@@ -1,4 +1,4 @@
-﻿CREATE DATABASE BookStore
+﻿CREATE DATABASE BookStoreDB
 GO
 
 USE BookStore
