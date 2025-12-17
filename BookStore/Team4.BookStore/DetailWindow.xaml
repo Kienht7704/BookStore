@@ -5,50 +5,240 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:local="clr-namespace:Team4.BookStore"
         mc:Ignorable="d"
-        Title="Book Detail" Height="755" Width="1150" Background="#ff2800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" >
+        Title="Book Detail" Height="700" Width="1000" Background="#87cefa" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
-        <Label x:Name="DetailTitleLable" Content="Create | Update Book" HorizontalAlignment="Left" Height="80" Margin="38,20,0,0" VerticalAlignment="Top" Width="814" FontWeight="Heavy" FontSize="40" FontStyle="Italic" Foreground="Yellow"/>
+        <!-- Title -->
+        <Label x:Name="DetailTitleLable" Content="Create | Update Book" HorizontalAlignment="Center" Height="70" Margin="0,20,0,0" VerticalAlignment="Top" Width="900" FontWeight="Bold" FontSize="36" Foreground="White" HorizontalContentAlignment="Center"/>
 
-        <Rectangle HorizontalAlignment="Left" Height="565" Margin="38,128,0,0" Stroke="Black" VerticalAlignment="Top" Width="875" Fill="#ffff00" RadiusX="10" RadiusY="10" />
+        <!-- Main Content Area -->
+        <Border Margin="30,110,30,30" Background="White" CornerRadius="15" Padding="30">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
 
-        <Label Content="Book ID" HorizontalAlignment="Left" Height="45" Margin="58,136,0,0" VerticalAlignment="Top" Width="107" Foreground="#ff4500"/>
-        <TextBox x:Name="BookIdTextBox" HorizontalAlignment="Left" Height="45" Margin="217,136,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="275" TabIndex="0"/>
+                <!-- Left Column - Form Fields -->
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-        <Label Content="Book Name" HorizontalAlignment="Left" Height="44" Margin="54,194,0,0" VerticalAlignment="Top" Width="148" Foreground="#ff4500"/>
-        <TextBox x:Name="BookNameTextBox" HorizontalAlignment="Left" Height="45" Margin="217,194,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="635" TabIndex="1"/>
+                    <!-- Book ID -->
+                    <StackPanel Grid.Row="0" Margin="0,0,0,15">
+                        <Label Content="Book ID" Foreground="#2d3748" FontWeight="SemiBold" FontSize="14" Padding="0,0,0,5"/>
+                        <TextBox x:Name="BookIdTextBox" Height="40" Padding="12,8" FontSize="13" BorderBrush="#87cefa" BorderThickness="2" TabIndex="0">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="6"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                    </StackPanel>
 
-        <Label Content="Description" HorizontalAlignment="Left" Height="45" Margin="58,284,0,0" VerticalAlignment="Top" Width="107" Foreground="#ff4500"/>
-        <TextBox x:Name="DescriptionTextBox" HorizontalAlignment="Left" Height="105" Margin="217,254,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="378" TabIndex="4" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" VerticalContentAlignment="Top"/>
+                    <!-- Book Name -->
+                    <StackPanel Grid.Row="1" Margin="0,0,0,15">
+                        <Label Content="Book Name" Foreground="#2d3748" FontWeight="SemiBold" FontSize="14" Padding="0,0,0,5"/>
+                        <TextBox x:Name="BookNameTextBox" Height="40" Padding="12,8" FontSize="13" BorderBrush="#87cefa" BorderThickness="2" TabIndex="1">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="6"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                    </StackPanel>
 
-        <Label Content="PublicationDate" HorizontalAlignment="Left" Height="45" Margin="53,388,0,0" VerticalAlignment="Top" Width="145" Foreground="#ff4500"/>
-        <TextBox x:Name="PublicationDateTextBox" HorizontalAlignment="Left" Height="45" Margin="217,388,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="635" TabIndex="3"/>
+                    <!-- Author -->
+                    <StackPanel Grid.Row="2" Margin="0,0,0,15">
+                        <Label Content="Author" Foreground="#2d3748" FontWeight="SemiBold" FontSize="14" Padding="0,0,0,5"/>
+                        <TextBox x:Name="AuthorTextBox" Height="40" Padding="12,8" FontSize="13" BorderBrush="#87cefa" BorderThickness="2" TabIndex="2">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="6"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                    </StackPanel>
 
-        <Label Content="Quantity" HorizontalAlignment="Left" Height="45" Margin="53,472,0,0" VerticalAlignment="Top" Width="157" Foreground="#ff4500"/>
-        <TextBox x:Name="QuantityTextBox" HorizontalAlignment="Left" Height="45" Margin="217,472,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="635" TabIndex="2" RenderTransformOrigin="0.499,0.542"/>
+                    <!-- Category -->
+                    <StackPanel Grid.Row="3" Margin="0,0,0,15">
+                        <Label Content="Category" Foreground="#2d3748" FontWeight="SemiBold" FontSize="14" Padding="0,0,0,5"/>
+                        <ComboBox x:Name="CategoryIdComboBox" Height="40" Padding="12,8" FontSize="13" BorderBrush="#87cefa" BorderThickness="2" TabIndex="3">
+                            <ComboBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="6"/>
+                                </Style>
+                            </ComboBox.Resources>
+                        </ComboBox>
+                    </StackPanel>
 
-        <Label Content="Price" HorizontalAlignment="Left" Height="45" Margin="58,550,0,0" VerticalAlignment="Top" Width="140" Foreground="#ff4500"/>
-        <TextBox x:Name="PriceTextBox" HorizontalAlignment="Left" Height="45" Margin="217,549,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="227" TabIndex="5"/>
+                    <!-- Price and Quantity -->
+                    <Grid Grid.Row="4" Margin="0,0,0,15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
-        <Label Content="Author" HorizontalAlignment="Left" Height="45" Margin="516,552,0,0" VerticalAlignment="Top" Width="107" Foreground="#ff4500"/>
-        <TextBox x:Name="AuthorTextBox" HorizontalAlignment="Left" Height="45" Margin="615,549,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="244" TabIndex="6"/>
+                        <!-- Price -->
+                        <StackPanel Grid.Column="0">
+                            <Label Content="Price (VNĐ)" Foreground="#2d3748" FontWeight="SemiBold" FontSize="14" Padding="0,0,0,5"/>
+                            <TextBox x:Name="PriceTextBox" Height="40" Padding="12,8" FontSize="13" BorderBrush="#87cefa" BorderThickness="2" TabIndex="4">
+                                <TextBox.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="6"/>
+                                    </Style>
+                                </TextBox.Resources>
+                            </TextBox>
+                        </StackPanel>
 
-        <Label Content="Category ID" HorizontalAlignment="Left" Height="45" Margin="58,615,0,0" VerticalAlignment="Top" Width="147" Foreground="#ff4500"/>
+                        <!-- Quantity -->
+                        <StackPanel Grid.Column="2">
+                            <Label Content="Quantity" Foreground="#2d3748" FontWeight="SemiBold" FontSize="14" Padding="0,0,0,5"/>
+                            <TextBox x:Name="QuantityTextBox" Height="40" Padding="12,8" FontSize="13" BorderBrush="#87cefa" BorderThickness="2" TabIndex="5">
+                                <TextBox.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="6"/>
+                                    </Style>
+                                </TextBox.Resources>
+                            </TextBox>
+                        </StackPanel>
+                    </Grid>
 
-        <Button x:Name="SaveButton" Content="Save Book" HorizontalAlignment="Left" Height="50" Margin="945,128,0,0" VerticalAlignment="Top" Width="165" TabIndex="8" Click="SaveButton_Click" />
-        <Button x:Name="CloseButton" Content="Close" HorizontalAlignment="Left" Height="50" Margin="945,208,0,0" VerticalAlignment="Top" Width="165" TabIndex="9" />
-        <ComboBox x:Name="CategoryIdComboBox" HorizontalAlignment="Left" Height="45" Margin="223,615,0,0" VerticalAlignment="Top" Width="377"/>
+                    <!-- Publication Date and Description -->
+                    <Grid Grid.Row="5" Margin="0,0,0,15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
-        <!-- Book Cover Image Section -->
-        <Label Content="Image URL" HorizontalAlignment="Left" Height="45" Margin="615,254,0,0" VerticalAlignment="Top" Width="107" Foreground="#ff4500"/>
-        <TextBox x:Name="ImageUrlTextBox" HorizontalAlignment="Left" Height="45" Margin="615,299,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" TabIndex="7" TextChanged="ImageUrlTextBox_TextChanged"/>
-        <Button x:Name="BrowseImageButton" Content="Browse..." HorizontalAlignment="Left" Height="30" Margin="615,349,0,0" VerticalAlignment="Top" Width="80" Click="BrowseImageButton_Click"/>
-        
-        <!-- Image Preview -->
-        <Border HorizontalAlignment="Left" Height="200" Margin="615,389,0,0" VerticalAlignment="Top" Width="237" BorderBrush="#ff4500" BorderThickness="2" Background="White" CornerRadius="5">
-            <Image x:Name="BookCoverImage" Stretch="Uniform" Margin="5"/>
+                        <!-- Publication Date -->
+                        <StackPanel Grid.Column="0">
+                            <Label Content="Publication Date (dd/MM/yyyy)" Foreground="#2d3748" FontWeight="SemiBold" FontSize="14" Padding="0,0,0,5"/>
+                            <TextBox x:Name="PublicationDateTextBox" Height="40" Padding="12,8" FontSize="13" BorderBrush="#87cefa" BorderThickness="2" TabIndex="6">
+                                <TextBox.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="6"/>
+                                    </Style>
+                                </TextBox.Resources>
+                            </TextBox>
+                        </StackPanel>
+
+                        <!-- Description -->
+                        <StackPanel Grid.Column="2">
+                            <Label Content="Description" Foreground="#2d3748" FontWeight="SemiBold" FontSize="14" Padding="0,0,0,5"/>
+                            <TextBox x:Name="DescriptionTextBox" Height="40" Padding="12,8" FontSize="13" BorderBrush="#87cefa" BorderThickness="2" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" VerticalContentAlignment="Top" TabIndex="7">
+                                <TextBox.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="6"/>
+                                    </Style>
+                                </TextBox.Resources>
+                            </TextBox>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+
+                <!-- Right Column - Image Section -->
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Image URL -->
+                    <StackPanel Grid.Row="0" Margin="0,0,0,15">
+                        <Label Content="Image URL" Foreground="#2d3748" FontWeight="SemiBold" FontSize="14" Padding="0,0,0,5"/>
+                        <TextBox x:Name="ImageUrlTextBox" Height="40" Padding="12,8" FontSize="13" BorderBrush="#87cefa" BorderThickness="2" TabIndex="8" TextChanged="ImageUrlTextBox_TextChanged">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="6"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                    </StackPanel>
+
+                    <!-- Browse Button -->
+                    <Button x:Name="BrowseImageButton" Grid.Row="1" Content="📁 Browse Image" Height="35" Margin="0,0,0,15" Click="BrowseImageButton_Click" Background="#87cefa" Foreground="White" FontWeight="SemiBold" FontSize="13" BorderThickness="0" Cursor="Hand">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="6" Padding="12,8">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Opacity" Value="0.9"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <!-- Image Preview Label -->
+                    <Label Grid.Row="2" Content="Preview" Foreground="#2d3748" FontWeight="SemiBold" FontSize="14" Padding="0,0,0,8" HorizontalAlignment="Center"/>
+
+                    <!-- Image Preview -->
+                    <Border Grid.Row="3" BorderBrush="#87cefa" BorderThickness="2" Background="#f0ffff" CornerRadius="8" Margin="0,0,0,15">
+                        <Image x:Name="BookCoverImage" Stretch="Uniform" Margin="10"/>
+                    </Border>
+
+                    <!-- Save Button -->
+                    <Button x:Name="SaveButton" Grid.Row="4" Content="💾 Save Book" Height="45" Margin="0,0,0,10" TabIndex="9" Click="SaveButton_Click" Background="#10b981" Foreground="White" FontWeight="Bold" FontSize="14" BorderThickness="0" Cursor="Hand">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="8" Padding="15,10">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Opacity" Value="0.9"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <!-- Close Button -->
+                    <Button x:Name="CloseButton" Grid.Row="5" Content="✖ Close" Height="45" TabIndex="10" Background="#95a5a6" Foreground="White" FontWeight="Bold" FontSize="14" BorderThickness="0" Cursor="Hand">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="8" Padding="15,10">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Opacity" Value="0.9"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Grid>
+            </Grid>
         </Border>
-        <Label Content="Preview" HorizontalAlignment="Left" Height="30" Margin="700,590,0,0" VerticalAlignment="Top" Width="70" Foreground="#ff4500" FontStyle="Italic"/>
-
     </Grid>
 </Window>
-

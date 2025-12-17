@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Thế Giới Sách Xứ F - ver.25-FA" Height="700" Width="1265" 
         Background="#f5f5f5" WindowStartupLocation="CenterScreen" 
-        ResizeMode="CanResize" Loaded="Window_Loaded">
+        ResizeMode="CanResize" Loaded="Window_Loaded" WindowStyle="None" AllowsTransparency="True">
 
     <Window.Resources>
         <!-- Sidebar Button Style -->
@@ -153,10 +153,7 @@
                                FontSize="24" 
                                FontWeight="Bold"
                                Foreground="#2c3e50"/>
-                    <TextBlock Text="ver. 25-FA" 
-                               FontSize="12" 
-                               Foreground="#95a5a6"
-                               Margin="0,2,0,0"/>
+                    
                 </StackPanel>
 
                 <StackPanel Grid.Column="2" 

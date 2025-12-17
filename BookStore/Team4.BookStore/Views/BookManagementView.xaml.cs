@@ -191,5 +191,7 @@ namespace Team4.BookStore.Views
             SearchByNameTextBox.Text = string.Empty;
             LoadBooks();
         }
+
+       
     }
 }

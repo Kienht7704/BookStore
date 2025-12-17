@@ -31,8 +31,8 @@
                 <Grid>
                     <StackPanel VerticalAlignment="Center" 
                                Margin="60">
-                        
-                        <TextBlock Text="📚 Bookstore Manager" 
+
+                        <TextBlock Text="📚 Bookstore Manager Xứ F" 
                                   FontSize="36" 
                                   FontWeight="Bold" 
                                   Foreground="White"
@@ -41,7 +41,7 @@
                                   Margin="0,0,0,20"
                                   TextWrapping="Wrap"/>
 
-                        <TextBlock Text="Your complete solution for book management" 
+                        <TextBlock Text="Giải pháp hoàn hảo cho bạn" 
                                   FontSize="16" 
                                   Foreground="#e3f2fd"
                                   HorizontalAlignment="Center"
@@ -67,7 +67,7 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Grid.Row="0" VerticalAlignment="Top">
-                    <TextBlock Text="Login" FontSize="32" FontWeight="Bold" Foreground="#2d3748" Margin="0,0,0,40"/>
+                    <TextBlock Text="Đăng nhập" FontSize="32" FontWeight="Bold" Foreground="#2d3748" Margin="0,0,0,40"/>
 
                     <TextBlock Text="Email" FontSize="14" Foreground="#2d3748" Margin="0,0,0,8"/>
                     <TextBox x:Name="EmailAddressTextBox" Height="45" FontSize="14" Padding="12" TabIndex="0" Margin="0,0,0,24">
@@ -80,7 +80,7 @@
                         </TextBox.Style>
                     </TextBox>
 
-                    <TextBlock Text="Password" FontSize="14" Foreground="#2d3748" Margin="0,0,0,8"/>
+                    <TextBlock Text="Mật khẩu" FontSize="14" Foreground="#2d3748" Margin="0,0,0,8"/>
 
                     <Grid Margin="0,0,0,32">
                         <!-- PasswordBox - ẩn password -->
@@ -117,7 +117,7 @@
                         </Button>
                     </Grid>
 
-                    <Button x:Name="LoginButton" Content="Login" Height="50" FontSize="16" FontWeight="Bold" TabIndex="2" Click="LoginButton_Click" Margin="0,0,0,16">
+                    <Button x:Name="LoginButton" Content="Đăng nhập" Height="50" FontSize="16" FontWeight="Bold" TabIndex="2" Click="LoginButton_Click" Margin="0,0,0,16">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="#87cefa"/>
@@ -142,7 +142,7 @@
                         </Button.Style>
                     </Button>
 
-                    <Button x:Name="QuitButton" Content="Quit" Height="50" FontSize="16" TabIndex="3">
+                    <Button x:Name="QuitButton" Content="Thoát" Height="50" FontSize="16" TabIndex="3">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="Transparent"/>

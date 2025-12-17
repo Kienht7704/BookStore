@@ -6,11 +6,11 @@
              xmlns:local="clr-namespace:Team4.BookStore.Views"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="1000">
-    
+
     <UserControl.Resources>
         <!-- Action Button Style -->
         <Style x:Key="ActionButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="#3498db"/>
+            <Setter Property="Background" Value="#87cefa"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="FontSize" Value="13"/>
@@ -39,7 +39,7 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid Background="#f5f5f5">
+    <Grid Background="#f0ffff">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -57,7 +57,7 @@
                 <TextBlock x:Name="StaffLabel" 
                            Text="Staff: Admin" 
                            FontSize="14" 
-                           Foreground="#7f8c8d"
+                           Foreground="#2d3748"
                            FontWeight="SemiBold"/>
             </StackPanel>
         </Border>
@@ -76,12 +76,13 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBox x:Name="BookIdTextBox" 
+                         Background="#f0ffff" 
                          Grid.Column="0" 
                          Height="38"
                          Padding="12,8"
                          FontSize="14"
                          VerticalContentAlignment="Center"
-                         BorderBrush="#bdc3c7"
+                         BorderBrush="#87cefa"
                          BorderThickness="1"
                          ToolTip="Nhập Book ID và nhấn Enter hoặc click Add"
                          KeyDown="BookIdTextBox_KeyDown">
@@ -98,17 +99,17 @@
                         Height="38"
                         Width="100"
                         Margin="10,0,0,0"
-                        Background="#27ae60"
+                        Background="#10b981"
                         Style="{StaticResource ActionButtonStyle}"
                         Click="AddButton_Click"/>
-                
+
                 <Button x:Name="SearchButton" 
                         Grid.Column="2" 
                         Content="🔍 Search" 
                         Height="38"
                         Width="120"
                         Margin="10,0,0,0"
-                        Background="#3498db"
+                        Background="#87cefa"
                         Style="{StaticResource ActionButtonStyle}"
                         Click="SearchButton_Click"/>
             </Grid>
@@ -130,7 +131,7 @@
                            Text="Đơn hàng hiện tại" 
                            FontSize="16" 
                            FontWeight="Bold"
-                           Foreground="#2c3e50"
+                           Foreground="#2d3748"
                            Margin="5,0,0,10"/>
 
                 <DataGrid x:Name="OrderDataGrid" 
@@ -142,25 +143,26 @@
                           HeadersVisibility="Column"
                           BorderThickness="0"
                           RowHeight="35"
-                          AlternatingRowBackground="#f8f9fa"
+                          AlternatingRowBackground="#f0ffff"
                           CanUserResizeRows="False"
                           CanUserAddRows="False"
                           CanUserDeleteRows="False">
                     <DataGrid.Resources>
                         <Style TargetType="DataGridColumnHeader">
-                            <Setter Property="Background" Value="#ecf0f1"/>
-                            <Setter Property="Foreground" Value="#2c3e50"/>
+                            <Setter Property="Background" Value="#87cefa"/>
+                            <Setter Property="Foreground" Value="White"/>
                             <Setter Property="FontWeight" Value="Bold"/>
                             <Setter Property="Padding" Value="10,8"/>
                             <Setter Property="BorderThickness" Value="0,0,0,2"/>
-                            <Setter Property="BorderBrush" Value="#bdc3c7"/>
+                            <Setter Property="BorderBrush" Value="#87cefa"/>
                         </Style>
                         <Style TargetType="DataGridCell">
                             <Setter Property="Padding" Value="10,5"/>
                             <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="Foreground" Value="#2d3748"/>
                             <Style.Triggers>
                                 <Trigger Property="IsSelected" Value="True">
-                                    <Setter Property="Background" Value="#3498db"/>
+                                    <Setter Property="Background" Value="#87cefa"/>
                                     <Setter Property="Foreground" Value="White"/>
                                 </Trigger>
                             </Style.Triggers>
@@ -169,7 +171,7 @@
                             <Setter Property="Background" Value="White"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#ecf0f1"/>
+                                    <Setter Property="Background" Value="#f0ffff"/>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
@@ -185,7 +187,7 @@
                                 <DataTemplate>
                                     <Button Content="🗑️" 
                                             Background="Transparent" 
-                                            Foreground="#e74c3c" 
+                                            Foreground="#ef4444" 
                                             BorderThickness="0" 
                                             FontSize="18" 
                                             Cursor="Hand"
@@ -228,13 +230,13 @@
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                         <TextBlock Text="Tổng phụ:" 
                                    FontSize="16" 
-                                   Foreground="#7f8c8d" 
+                                   Foreground="#2d3748" 
                                    Width="120"
                                    FontWeight="SemiBold"/>
                         <TextBlock x:Name="SubtotalLabel" 
                                    Text="0 $" 
                                    FontSize="16" 
-                                   Foreground="#2c3e50" 
+                                   Foreground="#2d3748" 
                                    Width="150" 
                                    TextAlignment="Right"
                                    FontWeight="SemiBold"/>
@@ -243,13 +245,13 @@
                         <TextBlock Text="TỔNG CỘNG:" 
                                    FontSize="20" 
                                    FontWeight="Bold" 
-                                   Foreground="#2c3e50" 
+                                   Foreground="#2d3748" 
                                    Width="120"/>
                         <TextBlock x:Name="TotalLabel" 
                                    Text="0 VNĐ" 
                                    FontSize="20" 
                                    FontWeight="Bold" 
-                                   Foreground="#27ae60" 
+                                   Foreground="#10b981" 
                                    Width="150" 
                                    TextAlignment="Right"/>
                     </StackPanel>
@@ -258,7 +260,7 @@
                             FontSize="18" 
                             Height="50" 
                             Width="270"
-                            Background="#27ae60"
+                            Background="#10b981"
                             FontWeight="Bold"
                             Style="{StaticResource ActionButtonStyle}"
                             Click="PayButton_Click"/>

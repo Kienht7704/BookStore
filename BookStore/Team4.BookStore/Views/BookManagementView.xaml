@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Team4.BookStore.Views"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="1000">
-    <Grid Background="#f5f5f5">
+    <Grid Background="#f0ffff">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -31,17 +31,18 @@
                            Text=" Tìm kiếm:" 
                            FontSize="14" 
                            FontWeight="SemiBold"
-                           Foreground="#34495e"
+                           Foreground="#2d3748"
                            VerticalAlignment="Center"
                            Margin="0,0,15,0"/>
 
                 <TextBox x:Name="SearchByNameTextBox" 
+                         Background="#f0ffff" 
                          Grid.Column="1"
                          Height="38"
                          Padding="12,8"
                          FontSize="14"
                          VerticalContentAlignment="Center"
-                         BorderBrush="#bdc3c7"
+                         BorderBrush="#87cefa"
                          BorderThickness="1"
                          TabIndex="0">
                     <TextBox.Resources>
@@ -57,7 +58,7 @@
                         Height="38"
                         Width="100"
                         Margin="10,0,0,0"
-                        Background="#3498db"
+                        Background="#87cefa"
                         Foreground="White"
                         BorderThickness="0"
                         FontSize="13"
@@ -133,7 +134,7 @@
                         Height="38"
                         Width="140"
                         Margin="0,0,10,0"
-                        Background="#27ae60"
+                        Background="#10b981"
                         Foreground="White"
                         BorderThickness="0"
                         FontSize="13"
@@ -168,7 +169,7 @@
                         Height="38"
                         Width="140"
                         Margin="0,0,10,0"
-                        Background="#f39c12"
+                        Background="#87cefa"
                         Foreground="White"
                         BorderThickness="0"
                         FontSize="13"
@@ -203,7 +204,7 @@
                         Height="38"
                         Width="120"
                         Margin="0,0,10,0"
-                        Background="#e74c3c"
+                        Background="#ef4444"
                         Foreground="White"
                         BorderThickness="0"
                         FontSize="13"
@@ -238,7 +239,7 @@
                         Height="38"
                         Width="140"
                         Margin="0,0,10,0"
-                        Background="#4CAF50"
+                        Background="#10b981"
                         Foreground="White"
                         BorderThickness="0"
                         FontSize="13"
@@ -270,7 +271,7 @@
                         Height="38"
                         Width="140"
                         Margin="0,0,10,0"
-                        Background="#2196F3"
+                        Background="#87cefa"
                         Foreground="White"
                         BorderThickness="0"
                         FontSize="13"
@@ -302,7 +303,7 @@
                         Height="38"
                         Width="160"
                         Margin="0,0,10,0"
-                        Background="#9C27B0"
+                        Background="#87cefa"
                         Foreground="White"
                         BorderThickness="0"
                         FontSize="13"
@@ -333,8 +334,8 @@
                         Content="📄 Tạo QR Code" 
                         Height="38"
                         Width="140"
-                        Margin="0,0,10,0"
-                        Background="#FF9800"
+                        Margin="0,10,10,0"
+                        Background="#87cefa"
                         Foreground="White"
                         BorderThickness="0"
                         FontSize="13"
@@ -365,7 +366,8 @@
                         Content="📊 Tạo Barcode" 
                         Height="38"
                         Width="140"
-                        Background="#FF5722"
+                        Margin="0,10,10,0"
+                        Background="#87cefa"
                         Foreground="White"
                         BorderThickness="0"
                         FontSize="13"
@@ -409,7 +411,7 @@
                            Text="Danh sách sách" 
                            FontSize="16" 
                            FontWeight="Bold"
-                           Foreground="#2c3e50"
+                           Foreground="#2d3748"
                            Margin="5,0,0,10"/>
 
                 <DataGrid x:Name="BookDataGrid" 
@@ -422,23 +424,24 @@
                           HeadersVisibility="Column"
                           BorderThickness="0"
                           RowHeight="35"
-                          AlternatingRowBackground="#f8f9fa"
+                          AlternatingRowBackground="#f0ffff"
                           CanUserResizeRows="False">
                     <DataGrid.Resources>
                         <Style TargetType="DataGridColumnHeader">
-                            <Setter Property="Background" Value="#ecf0f1"/>
-                            <Setter Property="Foreground" Value="#2c3e50"/>
+                            <Setter Property="Background" Value="#87cefa"/>
+                            <Setter Property="Foreground" Value="White"/>
                             <Setter Property="FontWeight" Value="Bold"/>
                             <Setter Property="Padding" Value="10,8"/>
                             <Setter Property="BorderThickness" Value="0,0,0,2"/>
-                            <Setter Property="BorderBrush" Value="#bdc3c7"/>
+                            <Setter Property="BorderBrush" Value="#87cefa"/>
                         </Style>
                         <Style TargetType="DataGridCell">
                             <Setter Property="Padding" Value="10,5"/>
                             <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="Foreground" Value="#2d3748"/>
                             <Style.Triggers>
                                 <Trigger Property="IsSelected" Value="True">
-                                    <Setter Property="Background" Value="#3498db"/>
+                                    <Setter Property="Background" Value="#87cefa"/>
                                     <Setter Property="Foreground" Value="White"/>
                                 </Trigger>
                             </Style.Triggers>
@@ -447,7 +450,7 @@
                             <Setter Property="Background" Value="White"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#ecf0f1"/>
+                                    <Setter Property="Background" Value="#f0ffff"/>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>

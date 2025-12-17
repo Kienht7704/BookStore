@@ -40,7 +40,7 @@
 
         <!-- Primary/ Default TextBox Style: Nền Đỏ Orange-Red, Chữ Vàng Đậm, Căn Chữ Giữa Ô -->
         <Style TargetType="TextBox">
-            <Setter Property="Background" Value="#ff4500" />
+            <Setter Property="Background" Value="#f0ffff" />
             <Setter Property="Foreground" Value="#ffff00" />
             <Setter Property="FontSize" Value="18" />
             <Setter Property="FontWeight" Value="Bold" />
