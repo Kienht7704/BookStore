@@ -1,6 +1,7 @@
 ﻿using BookStore.BLL.Services;
 using BookStore.DAL.Entities;
-using System; // Added for DateTime and Exception
+using System;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Team4.BookStore.Views;
 
 namespace Team4.BookStore
 {
@@ -19,214 +21,129 @@ namespace Team4.BookStore
     /// </summary>
     public partial class MainWindow : Window
     {
+        private BookManagementView _bookManagementView;
+        private UserManagementView _userManagementView;
+        private POSView _posView;
+
         public MainWindow()
         {
             InitializeComponent();
         }
-        private BookService _service = new();
-        private ExcelService _excelService = new();
-
 
         public User X { get; set; }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            AirConDataGrid.ItemsSource = _service.GetALLBook(); // include đã nằm trong repo rồi -> ecapsulation
-            //màu mè, vẽ vời thêm
-            HelloMsgLabel.Content = "Hello, " + X.FullName;
-
-            //phân quyền nút bấm
-            if (X.RoleId != 1)
+            // Cập nhật tên người dùng - find TextBlock by name
+            var textBlock = FindVisualChild<TextBlock>(this, "HelloMsgLabel");
+            if (textBlock != null)
             {
-                CreateButton.IsEnabled = false;
-                UpdateButton.IsEnabled = false;
-                DeleteButton.IsEnabled = false;
+                textBlock.Text = X.FullName;
             }
+
+            // Load Book Management View by default
+            LoadBookManagementView();
         }
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+
+        // Helper method to find child controls
+        private static T FindVisualChild<T>(DependencyObject parent, string name) where T : DependencyObject
         {
-            // bắt được dòng selected là 1 máy lạnh được chọn
-            Book? selected = AirConDataGrid.SelectedItem as Book;
-            if (selected == null)
+            if (parent == null) return null;
+
+            int childrenCount = VisualTreeHelper.GetChildrenCount(parent);
+            for (int i = 0; i < childrenCount; i++)
             {
-                MessageBox.Show("Please select a row before delete.", "Select one", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }// không làm phần  confirm are you sure thì bị trừ điểm
-            else
-            {
-                MessageBoxResult answer = MessageBox.Show("Are you sure you want to delete the selected book?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Error);
-                if (answer == MessageBoxResult.No)
+                var child = VisualTreeHelper.GetChild(parent, i);
+                if (child is T typedChild && child is FrameworkElement fe && fe.Name == name)
                 {
-                    // không xóa thì thoát hàm
-                    return;
+                    return typedChild;
                 }
-                else
-                {
-                    _service.DeleteBook(selected);
-                    AirConDataGrid.ItemsSource = _service.GetALLBook(); // f5 đổ lại lưới vip
-                }
+
+                var result = FindVisualChild<T>(child, name);
+                if (result != null)
+                    return result;
             }
+            return null;
         }
 
-        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        private void LoadBookManagementView()
         {
-            Book? selected = AirConDataGrid.SelectedItem as Book;
-            if (selected == null)
+            if (_bookManagementView == null)
             {
-                MessageBox.Show("Please select a row before updating.", "Select one", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            } // đoạn sau phải gửi slected sang detail window để sửa
-              // bên class DetailWindow khai báo 1 prop x để hứng và show detail dialog lên , không cho nhiều detail xuất hiện
-            DetailWindow detail = new();
-            detail.X = selected; // nhiều chàng trỏ 1 nàng
-            detail.ShowDialog();
-            // F5 lại grid để cập nhật info máy lạnh đã sửa
-            AirConDataGrid.ItemsSource = _service.GetALLBook();
-        }
-
-        private void CreateButton_Click(object sender, RoutedEventArgs e)
-        {
-            // create không cần selected
-            DetailWindow detail = new();
-            detail.ShowDialog();
-            AirConDataGrid.ItemsSource = _service.GetALLBook();
-        }
-
-        private void ImportButton_Click(object sender, RoutedEventArgs e)
-        {
-            var openFileDialog = new Microsoft.Win32.OpenFileDialog
-            {
-                Filter = "Excel Files (*.xlsx)|*.xlsx|All Files (*.*)|*.*",
-                Title = "Select Excel file to import"
-            };
-
-            if (openFileDialog.ShowDialog() == true)
-            {
-                try
-                {
-                    var books = _excelService.ImportBooksFromExcel(openFileDialog.FileName);
-                    if (books.Count == 0)
-                    {
-                        MessageBox.Show("No valid books found in the Excel file.", "Import", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        return;
-                    }
-
-                    _service.CreateBooks(books);
-                    AirConDataGrid.ItemsSource = _service.GetALLBook();
-                    MessageBox.Show($"Successfully imported {books.Count} book(s)!", "Import Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error importing Excel file: {ex.Message}", "Import Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                _bookManagementView = new BookManagementView();
+                _bookManagementView.CurrentUser = X;
             }
-        }
+            MainContentControl.Content = _bookManagementView;
 
-        private void ExportButton_Click(object sender, RoutedEventArgs e)
-        {
-            var saveFileDialog = new Microsoft.Win32.SaveFileDialog
+            // Update page title
+            var titleLabel = FindVisualChild<TextBlock>(this, "PageTitleLabel");
+            if (titleLabel != null)
             {
-                Filter = "Excel Files (*.xlsx)|*.xlsx",
-                Title = "Save Excel file",
-                FileName = $"BookStore_Export_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx"
-            };
-
-            if (saveFileDialog.ShowDialog() == true)
-            {
-                try
-                {
-                    var books = _service.GetALLBook();
-                    _excelService.ExportBooksToExcel(books, saveFileDialog.FileName);
-                    MessageBox.Show($"Successfully exported {books.Count} book(s) to Excel!", "Export Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error exporting to Excel: {ex.Message}", "Export Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                titleLabel.Text = "Quản lý sách";
             }
+
+            // Highlight active menu
+            BookManageButton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#34495e"));
+            UserManageButton.Background = Brushes.Transparent;
+            POSButton.Background = Brushes.Transparent;
         }
 
-        /// <summary>
-        /// Open Point of Sale window for checkout
-        /// </summary>
-        private void POSButton_Click(object sender, RoutedEventArgs e)
+        private void LoadUserManagementView()
         {
-            POSWindow posWindow = new POSWindow();
-            posWindow.CurrentStaff = X;
-            posWindow.ShowDialog();
-            // Refresh book list after POS closes (stock may have changed)
-            AirConDataGrid.ItemsSource = _service.GetALLBook();
+            if (_userManagementView == null)
+            {
+                _userManagementView = new UserManagementView();
+            }
+            MainContentControl.Content = _userManagementView;
+
+            // Update page title
+            var titleLabel = FindVisualChild<TextBlock>(this, "PageTitleLabel");
+            if (titleLabel != null)
+            {
+                titleLabel.Text = "Quản lý người dùng";
+            }
+
+            // Highlight active menu
+            UserManageButton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#34495e"));
+            BookManageButton.Background = Brushes.Transparent;
+            POSButton.Background = Brushes.Transparent;
+        }
+
+        private void LoadPOSView()
+        {
+            if (_posView == null)
+            {
+                _posView = new POSView();
+                _posView.CurrentStaff = X;
+            }
+            MainContentControl.Content = _posView;
+
+            // Update page title
+            var titleLabel = FindVisualChild<TextBlock>(this, "PageTitleLabel");
+            if (titleLabel != null)
+            {
+                titleLabel.Text = "Point of Sale";
+            }
+
+            // Highlight active menu
+            POSButton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#34495e"));
+            BookManageButton.Background = Brushes.Transparent;
+            UserManageButton.Background = Brushes.Transparent;
+        }
+
+        private void BookManageButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoadBookManagementView();
         }
 
         private void UserManageButton_Click(object sender, RoutedEventArgs e)
         {
-            UserManagementWindow userManage = new();
-            userManage.ShowDialog();
+            LoadUserManagementView();
         }
 
-        private void QRScanButton_Click(object sender, RoutedEventArgs e)
+        private void POSButton_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                QRScannerWindow qrWindow = new QRScannerWindow();
-                qrWindow.ShowDialog();
-
-                // Refresh lại datagrid sau khi quét (nếu cần)
-                AirConDataGrid.ItemsSource = _service.GetALLBook();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi khi mở cửa sổ quét QR: {ex.Message}",
-                    "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private void GenerateQRButton_Click(object sender, RoutedEventArgs e)
-        {
-            Book? selected = AirConDataGrid.SelectedItem as Book;
-            if (selected == null)
-            {
-                MessageBox.Show("Vui lòng chọn một sách để tạo mã QR!",
-                    "Chọn sách", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
-            GenerateQRWindow qrWindow = new GenerateQRWindow();
-            qrWindow.SelectedBook = selected;
-            qrWindow.ShowDialog();
-        }
-
-        private void GenerateBarcodeButton_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Book? selected = AirConDataGrid.SelectedItem as Book;
-
-                if (selected == null)
-                {
-                    MessageBox.Show("Vui lòng chọn một sách để tạo Barcode! ",
-                        "Chọn sách", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return;
-                }
-
-                GenerateBarcodeWindow barcodeWindow = new GenerateBarcodeWindow();
-                barcodeWindow.SelectedBook = selected;
-                barcodeWindow.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi khi mở cửa sổ Barcode: {ex.Message}",
-                    "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
-        {
-            AirConDataGrid.ItemsSource = _service.SearchByName(SearchByNameTextBox.Text);
-        }
-
-        private void ResetButton_Click(object sender, RoutedEventArgs e)
-        {
-            SearchByNameTextBox.Text = string.Empty;
-            AirConDataGrid.ItemsSource = _service.GetALLBook();
+            LoadPOSView();
         }
     }
 }

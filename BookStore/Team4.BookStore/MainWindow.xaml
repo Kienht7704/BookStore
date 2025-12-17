@@ -5,83 +5,186 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Team4.BookStore"
         mc:Ignorable="d"
-        Title="Thế Giới Sách Xứ F - ver.25-FA" Height="700" Width="1265" Background="#ff2800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded" >
+        Title="Thế Giới Sách Xứ F - ver.25-FA" Height="700" Width="1265" 
+        Background="#f5f5f5" WindowStartupLocation="CenterScreen" 
+        ResizeMode="CanResize" Loaded="Window_Loaded">
+
+    <Window.Resources>
+        <!-- Sidebar Button Style -->
+        <Style x:Key="SidebarButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="20,12"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8"
+                                Margin="8,4">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                            VerticalAlignment="Center"
+                                            Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#34495e"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#2c3e50"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Action Button Style -->
+        <Style x:Key="ActionButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#3498db"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="6"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Opacity" Value="0.9"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.5"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <Label Content="Thế Giới Sách Xứ F" HorizontalAlignment="Left" Height="80" Margin="31,20,0,0" VerticalAlignment="Top" Width="569" FontWeight="Heavy" FontSize="50" FontStyle="Italic" Foreground="Yellow"/>
-        <Label Content="ver. 25-FA" HorizontalAlignment="Left" Height="50" Margin="598,40,0,0" VerticalAlignment="Top" Width="275" FontSize="30" Foreground="Yellow" FontStyle="Italic"/>
-        <Label x:Name="HelloMsgLabel" Content="Hello, Administrator" HorizontalAlignment="Left" Height="50" Margin="929,6,0,0" VerticalAlignment="Top" Width="315" FontSize="25" FontStyle="Italic" Style="{StaticResource YellowLabelStyle}" HorizontalContentAlignment="Right"/>
+        <!-- Sidebar -->
+        <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Background="#2c3e50">
+            <StackPanel>
+                <!-- Logo/Brand Area -->
+                <Border Background="#1a252f" Padding="15" Margin="0,0,0,10">
+                    <StackPanel>
+                        <TextBlock Text="📚 Thế Giới Sách" 
+                                   Foreground="#ecf0f1" 
+                                   FontSize="20" 
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center"/>
+                        <TextBlock Text="Xứ F" 
+                                   Foreground="#f39c12" 
+                                   FontSize="16" 
+                                   FontWeight="SemiBold"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
 
-        <Rectangle HorizontalAlignment="Left" Height="95" Margin="39,140,0,0" Stroke="Black" VerticalAlignment="Top" Width="1171" Fill="#ffff00" RadiusX="10" RadiusY="10" />
-        <Button x:Name="SearchButton" Content="Search Book" HorizontalAlignment="Left" Height="50" Margin="75,162,0,0" VerticalAlignment="Top" Width="262" TabIndex="2" Style="{StaticResource RedButtonStyle}" Click="SearchButton_Click"/>
-        <Label Content="Name:" HorizontalAlignment="Left" Height="45" Margin="388,169,0,0" VerticalAlignment="Top" Width="152" Foreground="#ff4500"/>
-        <TextBox x:Name="SearchByNameTextBox" HorizontalAlignment="Left" Height="46" Margin="473,164,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="303" TabIndex="0"/>
+                <!-- Menu Section: QUẢN LÝ -->
+                <TextBlock Text="QUẢN LÝ" 
+                           Foreground="#95a5a6" 
+                           FontSize="11" 
+                           FontWeight="Bold"
+                           Margin="15,15,0,5"/>
 
-        <!-- POS Button - Opens Point of Sale -->
-        <Button x:Name="POSButton" Content="🛒 Open POS" HorizontalAlignment="Left" Height="50" Margin="1003,162,0,0" VerticalAlignment="Top" Width="165" TabIndex="2" Click="POSButton_Click" Background="#4ecca3" Foreground="#1a1a2e" FontWeight="ExtraBold" FontSize="16"/>
+                <Button x:Name="BookManageButton" 
+                        Content="📚 Quản lý sách" 
+                        Style="{StaticResource SidebarButtonStyle}"
+                        Click="BookManageButton_Click"/>
 
-        <Button x:Name="CreateButton" Content="Create Book" HorizontalAlignment="Left" Height="50" Margin="1003,294,0,0" VerticalAlignment="Top" Width="185" TabIndex="3" Click="CreateButton_Click"/>
-        <Button x:Name="UpdateButton" Content="Update Book" HorizontalAlignment="Left" Height="50" Margin="1003,367,0,0" VerticalAlignment="Top" Width="185
-                " TabIndex="4" Click="UpdateButton_Click" />
-        <Button x:Name="DeleteButton" Content="Delete Book" HorizontalAlignment="Left" Height="50" Margin="1003,444,0,0" VerticalAlignment="Top" Width="185
-                " TabIndex="5" Click="DeleteButton_Click" />
-        <Button x:Name="QuitButton" Content="Quit" HorizontalAlignment="Left" Height="50" Margin="1003,540,0,0" VerticalAlignment="Top" Width="185" TabIndex="6" />
+                <Button x:Name="UserManageButton" 
+                        Content="👥 Quản lý người dùng" 
+                        Style="{StaticResource SidebarButtonStyle}"
+                        Click="UserManageButton_Click"/>
 
-        <!-- Import/Export Excel Buttons -->
-        <Button x:Name="ImportButton" Content="Import Excel" HorizontalAlignment="Left" Height="40" Margin="40,605,0,0" VerticalAlignment="Top" Width="120" Click="ImportButton_Click" Background="#4CAF50" Foreground="White" FontWeight="Bold"/>
-        <Button x:Name="ExportButton" Content="Export Excel" HorizontalAlignment="Left" Height="40" Margin="170,605,0,0" VerticalAlignment="Top" Width="120" Click="ExportButton_Click" Background="#2196F3" Foreground="White" FontWeight="Bold"/>
+                <!-- POS Section: BÁN HÀNG -->
+                <TextBlock Text="BÁN HÀNG" 
+                           Foreground="#95a5a6" 
+                           FontSize="11" 
+                           FontWeight="Bold"
+                           Margin="15,20,0,5"/>
 
-        <Button x:Name="QRScanButton" 
-        Content="📱 Quét QR/Barcode" 
-        HorizontalAlignment="Left" 
-        Height="50" 
-        Margin="1003,605,0,0" 
-        VerticalAlignment="Top" 
-        Width="207" 
-        TabIndex="6" 
-        Click="QRScanButton_Click"
-        Background ="#2196F3"  RenderTransformOrigin="0.523,1.381"
-                Foreground="White"/>
+                <Button x:Name="POSButton" 
+                        Content="🛒 Mở POS" 
+                        Style="{StaticResource SidebarButtonStyle}"
+                        Click="POSButton_Click"/>
+            </StackPanel>
+        </Border>
 
-        <Button x:Name="GenerateQRButton" 
-        Content="📄 Tạo QR" 
-        HorizontalAlignment="Left" 
-        Height="50" 
-        Margin="785,605,0,0" 
-        VerticalAlignment="Top" 
-        Width="185" 
-        Click="GenerateQRButton_Click"
-                Background ="#2196F3"
-                Foreground="White"/>
+        <!-- Header Bar -->
+        <Border Grid.Row="0" Grid.Column="1" Background="White" 
+                BorderBrush="#e0e0e0" BorderThickness="0,0,0,1">
+            <Grid Margin="20,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
+                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                    <TextBlock x:Name="PageTitleLabel"
+                               Text="Quản lý sách" 
+                               FontSize="24" 
+                               FontWeight="Bold"
+                               Foreground="#2c3e50"/>
+                    <TextBlock Text="ver. 25-FA" 
+                               FontSize="12" 
+                               Foreground="#95a5a6"
+                               Margin="0,2,0,0"/>
+                </StackPanel>
 
-        <Button x:Name="GenerateBarcodeButton" 
-        Content="📊 Tạo Barcode" 
-        HorizontalAlignment="Left" 
-        Height="50" 
-        Margin="577,605,0,0" 
-        VerticalAlignment="Top" 
-        Width="185" 
-        Click="GenerateBarcodeButton_Click"
-                Background ="#2196F3"
-                Foreground="White"/>
+                <StackPanel Grid.Column="2" 
+                            Orientation="Horizontal" 
+                            VerticalAlignment="Center">
+                    <Border Background="#ecf0f1" 
+                            CornerRadius="20" 
+                            Padding="12,8">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="👤" 
+                                       FontSize="16" 
+                                       VerticalAlignment="Center"
+                                       Margin="0,0,8,0"/>
+                            <TextBlock x:Name="HelloMsgLabel" 
+                                       Text="Administrator" 
+                                       FontSize="14" 
+                                       FontWeight="SemiBold"
+                                       Foreground="#2c3e50"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </Border>
 
-        <DataGrid x:Name="AirConDataGrid" HorizontalAlignment="Left" Height="310" Margin="40,289,0,0" VerticalAlignment="Top" Width="930" AutoGenerateColumns="False" TabIndex="7" >
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Width="40" Binding="{Binding BookId}" />
-                <DataGridTextColumn Header="Book Name" Width="200" Binding="{Binding BookName}" />
-                <DataGridTextColumn Header="Description" Width="70" Binding="{Binding Description}" />
-                <DataGridTextColumn Header="Publication Date" Width="100" Binding="{Binding PublicationDate}" />
-                <DataGridTextColumn Header="Quantity" Width="200" Binding="{Binding Quantity}" />
-                <DataGridTextColumn Header="Price" Width="70" Binding="{Binding Price}" />
-                <DataGridTextColumn Header="Author" Width="100" Binding="{Binding Author}" />
-                <DataGridTextColumn Header="Category ID" Width="70" Binding="{Binding CategoryId}" />
-                <DataGridTextColumn Header="Supplier Name" Width="140" Binding="{Binding Category.BookGenreType}" />
-            </DataGrid.Columns>
-        </DataGrid>
-
-        <Button x:Name="UserManageButton" Content="User Manage" HorizontalAlignment="Left" Height="50" Margin="1003,235,0,0" VerticalAlignment="Top" Width="185" TabIndex="3" Click="UserManageButton_Click"/>
-        <Button x:Name="ResetButton" Content="Reset" HorizontalAlignment="Left" Height="54" Margin="804,160,0,0" VerticalAlignment="Top" Width="133" TabIndex="2" Style="{StaticResource RedButtonStyle}" Click="ResetButton_Click"/>
-
+        <!-- Main Content Area -->
+        <Border Grid.Row="1" Grid.Column="1" Background="#f5f5f5" Padding="20">
+            <ContentControl x:Name="MainContentControl"/>
+        </Border>
     </Grid>
 </Window>

@@ -49,9 +49,9 @@ namespace Team4.BookStore
         {
             // todo làm login sau
             string email = EmailAddressTextBox.Text;
-            string pass = PasswordTextBox.Text;
+            string pass = PasswordBoxControl.Visibility == Visibility.Visible ? PasswordBoxControl.Password : PasswordTextBox.Text;
 
-            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(pass))
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrEmpty(pass))
             {
                 MessageBox.Show("Both email and pass are required!", "Required", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
