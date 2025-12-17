@@ -3,6 +3,7 @@ using BookStore.DAL.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,7 +19,7 @@ namespace BookStore.BLL.Services
         }
 
         public void DeleteBook(Book obj) => _repo.Delete(obj);
-        
+
         public void UpdateBook(Book obj) => _repo.Update(obj);
 
         public void CreateBook(Book obj) => _repo.Create(obj);
@@ -35,6 +36,11 @@ namespace BookStore.BLL.Services
         {
             return _repo.GetBookById(bookId);
         }
+        public List<Book> SearchByName(string search)
+        {
+            return _repo.Search(search);
+        }
+
     }
 }
 

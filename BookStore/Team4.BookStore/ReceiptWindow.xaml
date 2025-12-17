@@ -1,0 +1,154 @@
+<Window x:Class="Team4.BookStore.ReceiptWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Receipt" Height="650" Width="450" 
+        Background="#f5f5f5" WindowStartupLocation="CenterScreen" 
+        ResizeMode="NoResize"
+        Loaded="Window_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Receipt Content -->
+        <Border Grid.Row="0" Background="White" Margin="20,20,20,10" CornerRadius="5">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="2" Opacity="0.2"/>
+            </Border.Effect>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Margin="30">
+                    <!-- Header -->
+                    <TextBlock Text="📚 BOOKSTORE" FontSize="24" FontWeight="Bold" 
+                               Foreground="#1a1a2e" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Thế Giới Sách Xứ F" FontSize="14" FontStyle="Italic"
+                               Foreground="#666" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+
+                    <!-- Separator -->
+                    <Border Height="1" Background="#ddd" Margin="0,15,0,15"/>
+
+                    <!-- Invoice Info -->
+                    <TextBlock x:Name="InvoiceIdLabel" Text="Invoice #: INV-000001" 
+                               FontSize="14" FontWeight="SemiBold" Foreground="#333"/>
+                    <TextBlock x:Name="DateLabel" Text="Date: 2025-12-16 12:00" 
+                               FontSize="12" Foreground="#666" Margin="0,3,0,0"/>
+                    <TextBlock x:Name="StaffLabel" Text="Staff: Admin" 
+                               FontSize="12" Foreground="#666" Margin="0,3,0,0"/>
+
+                    <!-- Separator -->
+                    <Border Height="1" Background="#ddd" Margin="0,15,0,15"/>
+
+                    <!-- Items Header -->
+                    <Grid Margin="0,0,0,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="80"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Item" FontWeight="SemiBold" FontSize="12" Foreground="#666"/>
+                        <TextBlock Grid.Column="1" Text="Qty" FontWeight="SemiBold" FontSize="12" Foreground="#666" TextAlignment="Center"/>
+                        <TextBlock Grid.Column="2" Text="Amount" FontWeight="SemiBold" FontSize="12" Foreground="#666" TextAlignment="Right"/>
+                    </Grid>
+
+                    <!-- Items List -->
+                    <ItemsControl x:Name="ItemsList">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,8,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="80"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0">
+                                        <TextBlock Text="{Binding Book.BookName}" FontSize="13" Foreground="#333" TextTrimming="CharacterEllipsis"/>
+                                        <TextBlock Text="{Binding UnitPrice, StringFormat=@ \{0:C\} each}" FontSize="11" Foreground="#888"/>
+                                    </StackPanel>
+                                    <TextBlock Grid.Column="1" Text="{Binding Quantity}" FontSize="13" Foreground="#333" TextAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding Subtotal, StringFormat=\{0:C\}}" FontSize="13" Foreground="#333" TextAlignment="Right" VerticalAlignment="Center"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <!-- Separator -->
+                    <Border Height="1" Background="#ddd" Margin="0,15,0,15"/>
+
+                    <!-- Totals -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="TOTAL" FontSize="20" FontWeight="Bold" Foreground="#1a1a2e"/>
+                        <TextBlock x:Name="TotalLabel" Grid.Row="0" Grid.Column="1" Text="$0.00" 
+                                   FontSize="20" FontWeight="Bold" Foreground="#4ecca3"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Payment Method" FontSize="12" Foreground="#666" Margin="0,5,0,0"/>
+                        <TextBlock x:Name="PaymentMethodLabel" Grid.Row="1" Grid.Column="1" Text="Cash" 
+                                   FontSize="12" Foreground="#666" Margin="0,5,0,0"/>
+                    </Grid>
+
+                    <!-- Separator -->
+                    <Border Height="1" Background="#ddd" Margin="0,15,0,15"/>
+
+                    <!-- Footer -->
+                    <TextBlock Text="Thank you for your purchase!" FontSize="14" FontWeight="SemiBold"
+                               Foreground="#333" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Please come again!" FontSize="12"
+                               Foreground="#666" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+
+                    <TextBlock Text="© 2025 Kin - Team 4 BookStore" FontSize="10"
+                               Foreground="#999" HorizontalAlignment="Center" Margin="0,20,0,0"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+
+        <!-- Action Buttons -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="20">
+            <Button x:Name="ExportButton" Content="📁 Export PDF" Width="130" Height="45"
+                    Background="#0f3460" Foreground="White" FontSize="14" FontWeight="SemiBold"
+                    Margin="0,0,10,0" Cursor="Hand" Click="ExportButton_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#1a5a8a"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button x:Name="CloseButton" Content="Close" Width="130" Height="45"
+                    Background="#e94560" Foreground="White" FontSize="14" FontWeight="SemiBold"
+                    Cursor="Hand" Click="CloseButton_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#ff6b6b"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -40,5 +40,9 @@ namespace BookStore.BLL.Services
         {
             return _repo.AutoGenerateMemberID();
         }
+        public List<User> SearchByName(string search)
+        {
+            return _repo.Search(search);
+        }
     }
 }

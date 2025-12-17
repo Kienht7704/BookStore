@@ -144,6 +144,18 @@ namespace Team4.BookStore
             }
         }
 
+        /// <summary>
+        /// Open Point of Sale window for checkout
+        /// </summary>
+        private void POSButton_Click(object sender, RoutedEventArgs e)
+        {
+            POSWindow posWindow = new POSWindow();
+            posWindow.CurrentStaff = X;
+            posWindow.ShowDialog();
+            // Refresh book list after POS closes (stock may have changed)
+            AirConDataGrid.ItemsSource = _service.GetALLBook();
+        }
+
         private void UserManageButton_Click(object sender, RoutedEventArgs e)
         {
             UserManagementWindow userManage = new();
@@ -204,6 +216,17 @@ namespace Team4.BookStore
                 MessageBox.Show($"Lỗi khi mở cửa sổ Barcode: {ex.Message}",
                     "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            AirConDataGrid.ItemsSource = _service.SearchByName(SearchByNameTextBox.Text);
+        }
+
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            SearchByNameTextBox.Text = string.Empty;
+            AirConDataGrid.ItemsSource = _service.GetALLBook();
         }
     }
 }

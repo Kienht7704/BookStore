@@ -36,6 +36,7 @@ namespace Team4.BookStore
             cboRole.SelectedValuePath = "RoleId";
             if (X != null)
             {
+                ContentLabel.Content = "Cập nhật người dùng";
                 txtMemberId.Text = X.MemberId.ToString();
                 txtMemberId.IsEnabled = false;
                 txtFullName.Text = X.FullName;
@@ -46,6 +47,7 @@ namespace Team4.BookStore
             }
             else
             {
+                ContentLabel.Content = "Thêm người dùng mới";
                 txtMemberId.Text = _ctx.AutoGenerateMemberID().ToString();
             }
         }
@@ -69,6 +71,15 @@ namespace Team4.BookStore
                 MessageBox.Show("Thêm người dùng thành công.", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             Close();
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Bạn có thay đổi chưa được lưu. Bạn có chắc chắn muốn hủy không?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.No)
+            {
+                return;
+            }
         }
     }
 }

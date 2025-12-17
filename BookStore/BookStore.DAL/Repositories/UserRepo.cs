@@ -59,6 +59,13 @@ namespace BookStore.DAL.Repositories
                 return _cxt.Users.Max(u => u.MemberId) + 1;
             }
         }
-
+        public List<User> Search(string search)
+        {
+            _cxt = new();
+            return _cxt.Users
+                .Include("Role")
+                .Where(u => u.FullName.Contains(search) || (u.EmailAddress != null && u.EmailAddress.Contains(search)))
+                .ToList();
+        }
     }
 }

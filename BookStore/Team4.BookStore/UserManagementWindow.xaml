@@ -6,48 +6,51 @@
         xmlns:local="clr-namespace:Team4.BookStore"
         mc:Ignorable="d"
         Title="UserManagementWindow" Height="450" Width="800" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
-    <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Grid>
+        <!-- Title -->
+        <Label Content="Quản lý người dùng" HorizontalAlignment="Center" Height="64" Margin="0,24,0,0" VerticalAlignment="Top" Width="370" FontSize="25"/>
+        
+        <!-- Search Controls -->
+        <Button x:Name="SearchButton" Content="Tìm kiếm" 
+            HorizontalAlignment="Left" VerticalAlignment="Top"
+            Width="100" Height="35" Margin="10,93,0,0"
+            Background="#c0c0c0" Foreground="White" 
+            FontWeight="Bold" Click="SearchButton_Click" />
+        
+        <TextBox x:Name="SearchTextBox" 
+            HorizontalAlignment="Left" VerticalAlignment="Top"
+            Width="254" Height="35" Margin="120,93,0,0" 
+            TextWrapping="Wrap" TabIndex="0" 
+            Background="Transparent" Foreground="Black"/>
+        
+        <Button x:Name="ResetButton" Content="Làm mới" 
+            HorizontalAlignment="Left" VerticalAlignment="Top"
+            Width="90" Height="35" Margin="390,93,0,0"
+            Background="#c0c0c0" Foreground="White" 
+            FontWeight="Bold" Click="ResetButton_Click" />
 
-        <!-- Form nhập liệu -->
-        <Border Grid.Row="0" BorderBrush="#3498db" BorderThickness="2" 
-            CornerRadius="5" Padding="15" Margin="114,69,150,0">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
-                <!-- Buttons -->
-                <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" 
-                        Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-                    <Button x:Name="btnAdd" Content="Thêm" Width="100" Height="35" 
-                        Margin="5" Background="#27ae60" Foreground="White" 
-                        FontWeight="Bold" Click="btnAdd_Click" />
-                    <Button x:Name="btnUpdate" Content="Cập nhật" Width="100" Height="35" 
-                        Margin="5" Background="#f39c12" Foreground="White" 
-                        FontWeight="Bold" Click="btnUpdate_Click" />
-                    <Button x:Name="btnDelete" Content="Xóa" Width="100" Height="35" 
-                        Margin="5" Background="#e74c3c" Foreground="White" 
-                        FontWeight="Bold" Click="btnDelete_Click" />
-                </StackPanel>
-            </Grid>
-        </Border>
+        <!-- Action Buttons -->
+        <Button x:Name="btnAdd" Content="Thêm" 
+            HorizontalAlignment="Left" VerticalAlignment="Top"
+            Width="80" Height="35" Margin="492,93,0,0"
+            Background="#27ae60" Foreground="White" 
+            FontWeight="Bold" Click="btnAdd_Click" />
+        
+        <Button x:Name="btnUpdate" Content="Cập nhật" 
+            HorizontalAlignment="Left" VerticalAlignment="Top"
+            Width="80" Height="35" Margin="581,93,0,0"
+            Background="#f39c12" Foreground="White" 
+            FontWeight="Bold" Click="btnUpdate_Click" />
+        
+        <Button x:Name="btnDelete" Content="Xóa" 
+            HorizontalAlignment="Left" VerticalAlignment="Top"
+            Width="80" Height="35" Margin="672,93,0,0"
+            Background="#e74c3c" Foreground="White" 
+            FontWeight="Bold" Click="btnDelete_Click" />
 
         <!-- DataGrid -->
-        <Border Grid.Row="1" BorderBrush="#3498db" BorderThickness="2" 
-            CornerRadius="5" Padding="10" Margin="0,10,0,0">
+        <Border BorderBrush="#3498db" BorderThickness="2" 
+            CornerRadius="5" Padding="10" Margin="10,158,10,10">
             <DataGrid x:Name="dgUsers" AutoGenerateColumns="False" 
                   IsReadOnly="True" SelectionMode="Single"
                   AlternatingRowBackground="#ecf0f1" Margin="0,34,0,0">
@@ -59,6 +62,5 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Border>
-        <Label Content="Quản lý người dùng" HorizontalAlignment="Left" Height="64" Margin="10,0,0,0" VerticalAlignment="Top" Width="328" FontSize="25"/>
     </Grid>
 </Window>
