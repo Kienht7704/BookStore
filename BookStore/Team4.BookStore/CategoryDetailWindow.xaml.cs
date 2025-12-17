@@ -24,13 +24,14 @@ namespace Team4.BookStore
                 CategoryIdTextBox.Text = SelectedCategory.CategoryId.ToString();
                 GenreTypeTextBox.Text = SelectedCategory.BookGenreType;
                 DescriptionTextBox.Text = SelectedCategory.Description;
-                CategoryIdTextBox.IsEnabled = false; // Don't allow ID editing
+                CategoryIdTextBox.IsEnabled = false; 
             }
             else
             {
                 // Create mode
+                CategoryIdTextBox.Text = _service.AutoGenerateId().ToString();
+                CategoryIdTextBox.IsEnabled = false;
                 DetailTitleLabel.Content = "Create New Category";
-                CategoryIdTextBox.IsEnabled = true;
             }
         }
 
@@ -41,7 +42,7 @@ namespace Team4.BookStore
                 // Validate input
                 if (string.IsNullOrWhiteSpace(CategoryIdTextBox.Text))
                 {
-                    MessageBox.Show("Vui lòng nh?p Category ID!", "Thi?u thông tin", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Vui lòng nh?p ID!", "Thi?u thông tin", MessageBoxButton.OK, MessageBoxImage.Warning);
                     CategoryIdTextBox.Focus();
                     return;
                 }

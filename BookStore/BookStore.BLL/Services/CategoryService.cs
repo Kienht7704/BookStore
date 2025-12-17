@@ -45,5 +45,9 @@ namespace BookStore.BLL.Services
             }
             return _repo.SearchByName(name);
         }
+        public int AutoGenerateId()
+        {
+            return _repo.AutoGenerateId();
+        }
     }
 }

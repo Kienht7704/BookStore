@@ -10,8 +10,8 @@
         ResizeMode="NoResize" 
         WindowStartupLocation="CenterScreen" 
         Loaded="Window_Loaded">
-    <Grid>
-        <Label x:Name="DetailTitleLabel" 
+	<Grid>
+		<Label x:Name="DetailTitleLabel" 
                Content="Create | Update Category" 
                HorizontalAlignment="Left" 
                Height="70" 
@@ -23,17 +23,17 @@
                FontStyle="Italic" 
                Foreground="Yellow"/>
 
-        <Rectangle HorizontalAlignment="Left" 
-                   Height="280" 
-                   Margin="30,95,0,0" 
+		<Rectangle HorizontalAlignment="Left" 
+                   Height="245" 
+                   Margin="30,0,0,0" 
                    Stroke="Black" 
-                   VerticalAlignment="Top" 
+                   VerticalAlignment="Center" 
                    Width="580" 
                    Fill="#ffff00" 
                    RadiusX="10" 
                    RadiusY="10"/>
 
-        <Label Content="Category ID" 
+		<Label Content="Category ID" 
                HorizontalAlignment="Left" 
                Height="40" 
                Margin="50,110,0,0" 
@@ -42,7 +42,7 @@
                Foreground="#ff4500"
                FontSize="14"
                FontWeight="SemiBold"/>
-        <TextBox x:Name="CategoryIdTextBox" 
+		<TextBox x:Name="CategoryIdTextBox" 
                  HorizontalAlignment="Left" 
                  Height="40" 
                  Margin="200,110,0,0" 
@@ -54,7 +54,7 @@
                  Padding="8"
                  VerticalContentAlignment="Center"/>
 
-        <Label Content="Genre Type" 
+		<Label Content="Genre Type" 
                HorizontalAlignment="Left" 
                Height="40" 
                Margin="50,165,0,0" 
@@ -63,7 +63,7 @@
                Foreground="#ff4500"
                FontSize="14"
                FontWeight="SemiBold"/>
-        <TextBox x:Name="GenreTypeTextBox" 
+		<TextBox x:Name="GenreTypeTextBox" 
                  HorizontalAlignment="Left" 
                  Height="40" 
                  Margin="200,165,0,0" 
@@ -75,7 +75,7 @@
                  Padding="8"
                  VerticalContentAlignment="Center"/>
 
-        <Label Content="Description" 
+		<Label Content="Description" 
                HorizontalAlignment="Left" 
                Height="40" 
                Margin="50,220,0,0" 
@@ -84,7 +84,7 @@
                Foreground="#ff4500"
                FontSize="14"
                FontWeight="SemiBold"/>
-        <TextBox x:Name="DescriptionTextBox" 
+		<TextBox x:Name="DescriptionTextBox" 
                  HorizontalAlignment="Left" 
                  Height="120" 
                  Margin="200,220,0,0" 
@@ -98,11 +98,11 @@
                  Padding="8"
                  VerticalContentAlignment="Top"/>
 
-        <Button x:Name="SaveButton" 
-                Content="?? Save Category" 
+		<Button x:Name="SaveButton" 
+                Content="Lưu" 
                 HorizontalAlignment="Left" 
                 Height="45" 
-                Margin="150,380,0,0" 
+                Margin="160,345,0,0" 
                 VerticalAlignment="Top" 
                 Width="160" 
                 TabIndex="3" 
@@ -113,31 +113,31 @@
                 FontSize="14"
                 FontWeight="Bold"
                 Cursor="Hand">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}" 
+			<Button.Template>
+				<ControlTemplate TargetType="Button">
+					<Border Background="{TemplateBinding Background}" 
                             CornerRadius="8"
                             Padding="15,10">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Opacity" Value="0.9"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
+						<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+					</Border>
+				</ControlTemplate>
+			</Button.Template>
+			<Button.Style>
+				<Style TargetType="Button">
+					<Style.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Opacity" Value="0.9"/>
+						</Trigger>
+					</Style.Triggers>
+				</Style>
+			</Button.Style>
+		</Button>
 
-        <Button x:Name="CloseButton" 
-                Content="? Close" 
+		<Button x:Name="CloseButton" 
+                Content="Hủy" 
                 HorizontalAlignment="Left" 
                 Height="45" 
-                Margin="340,380,0,0" 
+                Margin="356,345,0,0" 
                 VerticalAlignment="Top" 
                 Width="160" 
                 TabIndex="4" 
@@ -147,25 +147,25 @@
                 BorderThickness="0"
                 FontSize="14"
                 FontWeight="Bold"
-                Cursor="Hand">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}" 
+                Cursor="Hand" RenderTransformOrigin="0.551,-0.132">
+			<Button.Template>
+				<ControlTemplate TargetType="Button">
+					<Border Background="{TemplateBinding Background}" 
                             CornerRadius="8"
                             Padding="15,10">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Opacity" Value="0.9"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
-    </Grid>
+						<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+					</Border>
+				</ControlTemplate>
+			</Button.Template>
+			<Button.Style>
+				<Style TargetType="Button">
+					<Style.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Opacity" Value="0.9"/>
+						</Trigger>
+					</Style.Triggers>
+				</Style>
+			</Button.Style>
+		</Button>
+	</Grid>
 </Window>

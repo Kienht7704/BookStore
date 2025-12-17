@@ -52,5 +52,17 @@ namespace BookStore.DAL.Repositories
                 .Where(c => c.BookGenreType.Contains(name))
                 .ToList();
         }
+        public int AutoGenerateId()
+        {
+            _ctx = new();
+            if (_ctx.Categories.Count() == 0)
+            {
+                return 1;
+            }
+            else
+            {
+                return _ctx.Categories.Max(c => c.CategoryId) + 1;
+            }
+        }
     }
 }
