@@ -22,6 +22,7 @@ namespace Team4.BookStore
     public partial class MainWindow : Window
     {
         private BookManagementView _bookManagementView;
+        private CategoryManagementView _categoryManagementView;
         private UserManagementView _userManagementView;
         private POSView _posView;
 
@@ -84,6 +85,30 @@ namespace Team4.BookStore
 
             // Highlight active menu
             BookManageButton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#34495e"));
+            CategoryManageButton.Background = Brushes.Transparent;
+            UserManageButton.Background = Brushes.Transparent;
+            POSButton.Background = Brushes.Transparent;
+        }
+
+        private void LoadCategoryManagementView()
+        {
+            if (_categoryManagementView == null)
+            {
+                _categoryManagementView = new CategoryManagementView();
+                _categoryManagementView.CurrentUser = X;
+            }
+            MainContentControl.Content = _categoryManagementView;
+
+            // Update page title
+            var titleLabel = FindVisualChild<TextBlock>(this, "PageTitleLabel");
+            if (titleLabel != null)
+            {
+                titleLabel.Text = "Quản lý danh mục";
+            }
+
+            // Highlight active menu
+            CategoryManageButton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#34495e"));
+            BookManageButton.Background = Brushes.Transparent;
             UserManageButton.Background = Brushes.Transparent;
             POSButton.Background = Brushes.Transparent;
         }
@@ -106,6 +131,7 @@ namespace Team4.BookStore
             // Highlight active menu
             UserManageButton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#34495e"));
             BookManageButton.Background = Brushes.Transparent;
+            CategoryManageButton.Background = Brushes.Transparent;
             POSButton.Background = Brushes.Transparent;
         }
 
@@ -128,12 +154,18 @@ namespace Team4.BookStore
             // Highlight active menu
             POSButton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#34495e"));
             BookManageButton.Background = Brushes.Transparent;
+            CategoryManageButton.Background = Brushes.Transparent;
             UserManageButton.Background = Brushes.Transparent;
         }
 
         private void BookManageButton_Click(object sender, RoutedEventArgs e)
         {
             LoadBookManagementView();
+        }
+
+        private void CategoryManageButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoadCategoryManagementView();
         }
 
         private void UserManageButton_Click(object sender, RoutedEventArgs e)

@@ -248,7 +248,7 @@
                                    Foreground="#2d3748" 
                                    Width="120"/>
                         <TextBlock x:Name="TotalLabel" 
-                                   Text="0 VNĐ" 
+                                   Text="0$" 
                                    FontSize="20" 
                                    FontWeight="Bold" 
                                    Foreground="#10b981" 
