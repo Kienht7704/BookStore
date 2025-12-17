@@ -118,6 +118,7 @@ namespace Team4.BookStore
             if (_userManagementView == null)
             {
                 _userManagementView = new UserManagementView();
+                _userManagementView.CurrentUser = X;
             }
             MainContentControl.Content = _userManagementView;
 
@@ -176,6 +177,11 @@ namespace Team4.BookStore
         private void POSButton_Click(object sender, RoutedEventArgs e)
         {
             LoadPOSView();
+        }
+
+        private void Quit_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -41,7 +41,7 @@ namespace Team4.BookStore
                 txtMemberId.IsEnabled = false;
                 txtFullName.Text = X.FullName;
                 txtEmail.Text = X.EmailAddress;
-                txtPassword.Password = X.Password;
+                txtPassword.Text = X.Password;
                 txtEmail.IsEnabled = false;
                 cboRole.SelectedValue = X.RoleId;
             }
@@ -58,7 +58,7 @@ namespace Team4.BookStore
             newUser.MemberId = int.Parse(txtMemberId.Text);
             newUser.FullName = txtFullName.Text;
             newUser.EmailAddress = txtEmail.Text;
-            newUser.Password = txtPassword.Password;
+            newUser.Password = txtPassword.Text;
             newUser.RoleId = (int)cboRole.SelectedValue;
             if (X != null)
             {

@@ -122,6 +122,9 @@
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Opacity" Value="0.9"/>
                                 </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" Value="0.5"/>
+                                </Trigger>
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
@@ -153,6 +156,9 @@
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Opacity" Value="0.9"/>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" Value="0.5"/>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
@@ -186,6 +192,9 @@
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Opacity" Value="0.9"/>
                                 </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" Value="0.5"/>
+                                </Trigger>
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
@@ -216,6 +225,9 @@
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Opacity" Value="0.9"/>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" Value="0.5"/>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>

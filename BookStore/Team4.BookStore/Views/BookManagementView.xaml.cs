@@ -44,11 +44,11 @@ namespace Team4.BookStore.Views
             Book? selected = BookDataGrid.SelectedItem as Book;
             if (selected == null)
             {
-                MessageBox.Show("Vui lòng ch?n sách tr??c khi xóa.", "Ch?n sách", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Vui lï¿½ng ch?n sï¿½ch tr??c khi xï¿½a.", "Ch?n sï¿½ch", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            MessageBoxResult answer = MessageBox.Show("B?n có ch?c ch?n mu?n xóa sách ?ã ch?n?", "Xác nh?n xóa", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult answer = MessageBox.Show("B?n cï¿½ ch?c ch?n mu?n xï¿½a sï¿½ch ?ï¿½ ch?n?", "Xï¿½c nh?n xï¿½a", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (answer == MessageBoxResult.Yes)
             {
                 _service.DeleteBook(selected);
@@ -61,7 +61,7 @@ namespace Team4.BookStore.Views
             Book? selected = BookDataGrid.SelectedItem as Book;
             if (selected == null)
             {
-                MessageBox.Show("Vui lòng ch?n sách tr??c khi c?p nh?t.", "Ch?n sách", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Vui lï¿½ng ch?n sï¿½ch tr??c khi c?p nh?t.", "Ch?n sï¿½ch", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -93,13 +93,13 @@ namespace Team4.BookStore.Views
                     var books = _excelService.ImportBooksFromExcel(openFileDialog.FileName);
                     if (books.Count == 0)
                     {
-                        MessageBox.Show("Không tìm th?y sách h?p l? trong file Excel.", "Import", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("Khï¿½ng tï¿½m th?y sï¿½ch h?p l? trong file Excel.", "Import", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return;
                     }
 
                     _service.CreateBooks(books);
                     LoadBooks();
-                    MessageBox.Show($"Import thành công {books.Count} sách!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show($"Import thï¿½nh cï¿½ng {books.Count} sï¿½ch!", "Thï¿½nh cï¿½ng", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception ex)
                 {
@@ -123,7 +123,7 @@ namespace Team4.BookStore.Views
                 {
                     var books = _service.GetALLBook();
                     _excelService.ExportBooksToExcel(books, saveFileDialog.FileName);
-                    MessageBox.Show($"Export thành công {books.Count} sách ra Excel!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show($"Export thï¿½nh cï¿½ng {books.Count} sï¿½ch ra Excel!", "Thï¿½nh cï¿½ng", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception ex)
                 {
@@ -142,7 +142,7 @@ namespace Team4.BookStore.Views
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"L?i khi m? c?a s? quét QR: {ex.Message}", "L?i", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"L?i khi m? c?a s? quï¿½t QR: {ex.Message}", "L?i", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -151,7 +151,7 @@ namespace Team4.BookStore.Views
             Book? selected = BookDataGrid.SelectedItem as Book;
             if (selected == null)
             {
-                MessageBox.Show("Vui lòng ch?n m?t sách ?? t?o mã QR!", "Ch?n sách", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Vui lï¿½ng ch?n m?t sï¿½ch ?? t?o mï¿½ QR!", "Ch?n sï¿½ch", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -167,7 +167,7 @@ namespace Team4.BookStore.Views
                 Book? selected = BookDataGrid.SelectedItem as Book;
                 if (selected == null)
                 {
-                    MessageBox.Show("Vui lòng ch?n m?t sách ?? t?o Barcode!", "Ch?n sách", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Vui lï¿½ng ch?n m?t sï¿½ch ?? t?o Barcode!", "Ch?n sï¿½ch", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 

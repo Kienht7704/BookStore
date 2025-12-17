@@ -8,6 +8,7 @@ namespace Team4.BookStore.Views
     public partial class UserManagementView : UserControl
     {
         private UserService _userService = new();
+        public User CurrentUser { get; set; }
 
         public UserManagementView()
         {
@@ -18,6 +19,17 @@ namespace Team4.BookStore.Views
         private void UserManagementView_Loaded(object sender, RoutedEventArgs e)
         {
             LoadUsers();
+            ApplyPermissions();
+        }
+        private void ApplyPermissions()
+        {
+            if (CurrentUser != null && CurrentUser.RoleId != 1)
+            {
+                btnAdd.IsEnabled = false;
+                btnUpdate.IsEnabled = false;
+                btnDelete.IsEnabled = false;
+                ResetButton.IsEnabled= false;
+            }
         }
 
         private void LoadUsers()
@@ -37,7 +49,7 @@ namespace Team4.BookStore.Views
             User selected = dgUsers.SelectedItem as User;
             if (selected == null)
             {
-                MessageBox.Show("Vui lòng ch?n ng??i dùng c?n c?p nh?t.", "Ch?n ng??i dùng", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Vui lï¿½ng ch?n ng??i dï¿½ng c?n c?p nh?t.", "Ch?n ng??i dï¿½ng", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -52,11 +64,11 @@ namespace Team4.BookStore.Views
             User selected = dgUsers.SelectedItem as User;
             if (selected == null)
             {
-                MessageBox.Show("Vui lòng ch?n ng??i dùng c?n xóa.", "Ch?n ng??i dùng", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Vui lï¿½ng ch?n ng??i dï¿½ng c?n xï¿½a.", "Ch?n ng??i dï¿½ng", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            MessageBoxResult result = MessageBox.Show($"B?n có ch?c mu?n xóa ng??i dùng '{selected.FullName}'?", "Xác nh?n xóa", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult result = MessageBox.Show($"B?n cï¿½ ch?c mu?n xï¿½a ng??i dï¿½ng '{selected.FullName}'?", "Xï¿½c nh?n xï¿½a", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
                 _userService.DeleteUser(selected);

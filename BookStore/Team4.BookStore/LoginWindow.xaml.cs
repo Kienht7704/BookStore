@@ -83,7 +83,7 @@ namespace Team4.BookStore
             }
 
             //đoạn này giống cách 1: check role!!!
-            if (acc.RoleId == 3)
+            if (acc.RoleId == 2)
             {
                 //member không cho vào hệ thống, dù dùng đúng email và pass
                 MessageBox.Show("You have no permission to access this app!", "No permission", MessageBoxButton.OK, MessageBoxImage.Error);
