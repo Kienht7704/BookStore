@@ -142,7 +142,7 @@
                         </Button.Style>
                     </Button>
 
-                    <Button x:Name="QuitButton" Content="Thoát" Height="50" FontSize="16" TabIndex="3">
+                    <Button x:Name="QuitButton" Content="Thoát" Height="50" FontSize="16" TabIndex="3" Click="QuitButton_Click">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="Transparent"/>

@@ -96,5 +96,10 @@ namespace Team4.BookStore
             main.Show();
             Close(); // đóng login window để app có thể tắt đúng cách
         }
+
+        private void QuitButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
