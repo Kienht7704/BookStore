@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Team4.BookStore"
         mc:Ignorable="d"
         Title="QRScannerWindow" Height="450" Width="800"
-        Background="Orange" WindowStartupLocation="CenterScreen"
+        Background="#87cefa" WindowStartupLocation="CenterScreen"
         Loaded="Window_Loaded" Closing="Window_Closing">
     <Grid Margin="20">
         <Grid.RowDefinitions>
@@ -17,17 +17,17 @@
 
         <!-- Title -->
         <Label Grid.Row="0" Content="QUÉT MÃ QR / BARCODE" 
-           FontSize="40" FontWeight="Bold" 
-           Foreground="Yellow" HorizontalAlignment="Center"
-           Margin="0,0,0,20"/>
+               FontSize="40" FontWeight="Bold" 
+               Foreground="White" HorizontalAlignment="Center"
+               Margin="0,0,0,20"/>
 
         <!-- Camera Display -->
-        <Border Grid.Row="1" BorderBrush="Yellow" BorderThickness="3" 
+        <Border Grid.Row="1" BorderBrush="#87cefa" BorderThickness="3" 
                 CornerRadius="10" Background="Black">
             <Grid>
                 <Image x:Name="CameraImage" Stretch="Uniform"/>
                 <Label x:Name="StatusLabel" Content="Nhấn 'Bắt đầu quét' để khởi động camera" 
-                       FontSize="20" Foreground="Yellow" 
+                       FontSize="20" Foreground="White" 
                        HorizontalAlignment="Center" VerticalAlignment="Center"
                        Background="#80000000" Padding="20,10"/>
             </Grid>
@@ -38,14 +38,78 @@
                     HorizontalAlignment="Center" Margin="0,20,0,0">
             <Button x:Name="StartButton" Content="Bắt đầu quét" 
                     Width="200" Height="50" Margin="10"
-                    Click="StartButton_Click"/>
+                    Click="StartButton_Click"
+                    Background="#10b981" Foreground="White"
+                    BorderThickness="0" FontSize="14" FontWeight="Bold" Cursor="Hand">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="8" Padding="15,10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.9"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
             <Button x:Name="StopButton" Content="Dừng quét" 
                     Width="200" Height="50" Margin="10"
-                    Click="StopButton_Click" IsEnabled="False"/>
+                    Click="StopButton_Click" IsEnabled="False"
+                    Background="White" Foreground="Black"
+                    BorderThickness="0" FontSize="14" FontWeight="Bold" Cursor="Hand">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="8" Padding="15,10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.9"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.5"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
             <Button x:Name="CloseButton" Content="Đóng" 
                     Width="200" Height="50" Margin="10"
                     Click="CloseButton_Click"
-                    Style="{StaticResource RedButtonStyle}"/>
+                    Background="#ef4444" Foreground="White"
+                    BorderThickness="0" FontSize="14" FontWeight="Bold" Cursor="Hand">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="8" Padding="15,10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.9"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
         </StackPanel>
     </Grid>
 </Window>

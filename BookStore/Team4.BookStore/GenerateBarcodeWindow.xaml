@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Team4.BookStore"
         mc:Ignorable="d"
         Title="GenerateBarcodeWindow" Height="450" Width="800"
-        Background="#ff2800" WindowStartupLocation="CenterScreen"
+        Background="#87cefa" WindowStartupLocation="CenterScreen"
         Loaded="Window_Loaded">
     <Grid Margin="20">
         <Grid.RowDefinitions>
@@ -18,16 +18,17 @@
         <!-- Title -->
         <Label Grid.Row="0" Content="TẠO BARCODE CHO SÁCH" 
                FontSize="35" FontWeight="Bold" 
-               Foreground="Yellow" HorizontalAlignment="Center"/>
+               Foreground="White" HorizontalAlignment="Center"/>
 
         <!-- Barcode Preview Area -->
-        <Border Grid.Row="1" Background="#ffff00" 
-                BorderBrush="#ff4500" BorderThickness="3" 
+        <Border Grid.Row="1" Background="White" 
+                BorderBrush="#87cefa" BorderThickness="3" 
                 CornerRadius="10" Padding="20" Margin="0,20,0,75" Grid.RowSpan="2">
             <StackPanel>
                 <!-- Barcode Image -->
-                <Border Background="White" Padding="20" 
-                        HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Border Background="#f0ffff" Padding="20" 
+                        HorizontalAlignment="Center" VerticalAlignment="Center"
+                        BorderBrush="#87cefa" BorderThickness="2" CornerRadius="8">
                     <Image x:Name="BarcodeImage" Height="150" Width="500" 
                            Stretch="Uniform"/>
                 </Border>
@@ -36,13 +37,13 @@
                 <TextBlock x:Name="BookInfoText" 
                           TextAlignment="Center" 
                           FontSize="18" FontWeight="Bold"
-                          Foreground="#ff4500" Margin="0,15,0,0"/>
+                          Foreground="#2d3748" Margin="0,15,0,0"/>
 
                 <!-- Barcode Number -->
                 <TextBlock x:Name="BarcodeNumberText" 
                           TextAlignment="Center" 
                           FontSize="16" FontWeight="Bold"
-                          Foreground="#dc143c" Margin="0,10,0,0"/>
+                          Foreground="#87cefa" Margin="0,10,0,0"/>
             </StackPanel>
         </Border>
 
@@ -50,14 +51,97 @@
         <StackPanel Grid.Row="2" Orientation="Horizontal" 
                     HorizontalAlignment="Center" Margin="0,15,0,0">
             <Button Content="💾 Lưu Barcode" Width="150" Height="50" 
-                    Margin="10" Click="SaveButton_Click"/>
+                    Margin="10" Click="SaveButton_Click"
+                    Background="#10b981" Foreground="White"
+                    BorderThickness="0" FontSize="14" FontWeight="Bold" Cursor="Hand">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="8" Padding="15,10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.9"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
             <Button Content="🖨️ In Barcode" Width="150" Height="50" 
                     Margin="10" Click="PrintButton_Click"
-                    Style="{StaticResource RedButtonStyle}"/>
+                    Background="#ef4444" Foreground="White"
+                    BorderThickness="0" FontSize="14" FontWeight="Bold" Cursor="Hand">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="8" Padding="15,10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.9"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
             <Button Content="🔄 Tạo lại" Width="150" Height="50" 
-                    Margin="10" Click="RegenerateButton_Click"/>
+        Margin="10" Click="RegenerateButton_Click"
+        Background="White" Foreground="#87cefa"
+        BorderThickness="0" FontSize="14" FontWeight="Bold" Cursor="Hand">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                    CornerRadius="8" Padding="15,10"
+                    BorderBrush="White" BorderThickness="2">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.9"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
             <Button Content="❌ Đóng" Width="150" Height="50" 
-                    Margin="10" Click="CloseButton_Click"/>
+                    Margin="10" Click="CloseButton_Click"
+                    Background="#95a5a6" Foreground="White"
+                    BorderThickness="0" FontSize="14" FontWeight="Bold" Cursor="Hand">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="8" Padding="15,10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.9"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
         </StackPanel>
     </Grid>
 </Window>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Team4.BookStore"
         mc:Ignorable="d"
         Title="GenerateQRWindow" Height="550" Width="900"
-        >
+        Background="#87cefa" WindowStartupLocation="CenterScreen">
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -14,29 +14,80 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
+        <!-- Title -->
         <Label Grid.Row="0" Content="TẠO MÃ QR CHO SÁCH" 
                FontSize="35" FontWeight="Bold" 
-               Foreground="Orange" HorizontalAlignment="Center"/>
+               Foreground="White" HorizontalAlignment="Center"/>
 
-        <Border Grid.Row="1" Background="#ffff00" 
-                BorderBrush="#ff4500" BorderThickness="3" 
-                CornerRadius="10" Padding="20" Margin="0,5,0,10">
+        <!-- QR Preview Area -->
+        <Border Grid.Row="1" Background="White" 
+                BorderBrush="#87cefa" BorderThickness="3" 
+                CornerRadius="10" Padding="20" Margin="0,20,0,20">
             <StackPanel>
-                <Image x:Name="QRImage" Height="300" Width="300" 
-                       Stretch="Uniform" />
+                <!-- QR Image Container -->
+                <Border Background="#f0ffff" Padding="15"
+                        HorizontalAlignment="Center"
+                        BorderBrush="#87cefa" BorderThickness="2" CornerRadius="8">
+                    <Image x:Name="QRImage" Height="235" Width="245" 
+                           Stretch="Uniform"/>
+                </Border>
+
+                <!-- Book Info -->
                 <TextBlock x:Name="BookInfoText" 
                           TextAlignment="Center" 
                           FontSize="18" FontWeight="Bold"
-                          Foreground="#ff4500" Margin="0,10,0,0"/>
+                          Foreground="#2d3748" Margin="0,15,0,0"/>
             </StackPanel>
         </Border>
 
+        <!-- Action Buttons -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" 
-                    HorizontalAlignment="Center" Margin="0,21,0,-11">
+                    HorizontalAlignment="Center" Margin="0,10,0,0">
             <Button Content="💾 Lưu QR Code" Width="200" Height="50" 
-                    Margin="10" Click="SaveButton_Click"/>
+                    Margin="10" Click="SaveButton_Click"
+                    Background="#10b981" Foreground="White"
+                    BorderThickness="0" FontSize="14" FontWeight="Bold" Cursor="Hand">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="8" Padding="15,10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.9"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
             <Button Content="🖨️ In QR Code" Width="200" Height="50" 
-                    Margin="10" Click="PrintButton_Click"/>
+                    Margin="10" Click="PrintButton_Click"
+                    Background="White" Foreground="#87cefa"
+                    BorderThickness="0" FontSize="14" FontWeight="Bold" Cursor="Hand">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="8" Padding="15,10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.9"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
         </StackPanel>
     </Grid>
 </Window>

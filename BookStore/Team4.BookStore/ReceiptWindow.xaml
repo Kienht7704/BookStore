@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Receipt" Height="650" Width="450" 
-        Background="#f5f5f5" WindowStartupLocation="CenterScreen" 
+        Background="#f0ffff" WindowStartupLocation="CenterScreen" 
         ResizeMode="NoResize"
         Loaded="Window_Loaded">
 
@@ -25,7 +25,7 @@
                 <StackPanel Margin="30">
                     <!-- Header -->
                     <TextBlock Text="📚 BOOKSTORE" FontSize="24" FontWeight="Bold" 
-                               Foreground="#1a1a2e" HorizontalAlignment="Center"/>
+                               Foreground="#87cefa" HorizontalAlignment="Center"/>
                     <TextBlock Text="Thế Giới Sách Xứ F" FontSize="14" FontStyle="Italic"
                                Foreground="#666" HorizontalAlignment="Center" Margin="0,5,0,0"/>
 

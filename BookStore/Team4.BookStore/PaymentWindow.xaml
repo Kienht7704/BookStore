@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Payment" Height="620" Width="500" 
-        Background="#1a1a2e" WindowStartupLocation="CenterOwner" 
+        Background="#87cefa" WindowStartupLocation="CenterOwner" 
         ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True"
         Loaded="Window_Loaded">
 
-    <Border CornerRadius="15" Background="#16213e" BorderBrush="#0f3460" BorderThickness="2">
+    <Border CornerRadius="15" Background="White" BorderBrush="#87cefa" BorderThickness="3">
         <Grid Margin="20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -21,15 +21,15 @@
 
             <!-- Header -->
             <StackPanel Grid.Row="0" Margin="0,0,0,10">
-                <TextBlock Text="💳 Payment" FontSize="22" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
-                <TextBlock Text="Select payment method" FontSize="12" Foreground="#888" HorizontalAlignment="Center" Margin="0,3,0,0"/>
+                <TextBlock Text="💳 Payment" FontSize="22" FontWeight="Bold" Foreground="#2d3748" HorizontalAlignment="Center"/>
+                <TextBlock Text="Select payment method" FontSize="12" Foreground="#87cefa" HorizontalAlignment="Center" Margin="0,3,0,0"/>
             </StackPanel>
 
             <!-- Total Amount -->
-            <Border Grid.Row="1" Background="#1a1a2e" CornerRadius="8" Padding="10" Margin="0,0,0,10">
+            <Border Grid.Row="1" Background="#f0ffff" CornerRadius="8" Padding="10" Margin="0,0,0,10" BorderBrush="#87cefa" BorderThickness="2">
                 <StackPanel HorizontalAlignment="Center">
-                    <TextBlock Text="Total Amount" FontSize="12" Foreground="#888" HorizontalAlignment="Center"/>
-                    <TextBlock x:Name="TotalAmountLabel" Text="$0.00" FontSize="32" FontWeight="Bold" Foreground="#4ecca3" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Total Amount" FontSize="12" Foreground="#2d3748" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="TotalAmountLabel" Text="$0.00" FontSize="32" FontWeight="Bold" Foreground="#10b981" HorizontalAlignment="Center"/>
                 </StackPanel>
             </Border>
 
@@ -38,23 +38,24 @@
                 <RadioButton x:Name="CashRadio" GroupName="PaymentMethod" IsChecked="True" Margin="0,0,0,10">
                     <RadioButton.Template>
                         <ControlTemplate TargetType="RadioButton">
-                            <Border x:Name="border" Background="#1a1a2e" CornerRadius="8" Padding="12" Cursor="Hand"
-                                    BorderBrush="#333" BorderThickness="2">
+                            <Border x:Name="border" Background="#f0ffff" CornerRadius="8" Padding="12" Cursor="Hand"
+                                    BorderBrush="#87cefa" BorderThickness="2">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="💵" FontSize="22" VerticalAlignment="Center" Margin="0,0,10,0"/>
                                     <StackPanel VerticalAlignment="Center">
-                                        <TextBlock Text="Cash Payment" FontSize="14" FontWeight="SemiBold" Foreground="White"/>
-                                        <TextBlock Text="Pay with cash" FontSize="10" Foreground="#888"/>
+                                        <TextBlock Text="Cash Payment" FontSize="14" FontWeight="SemiBold" Foreground="#2d3748"/>
+                                        <TextBlock Text="Pay with cash" FontSize="10" Foreground="#87cefa"/>
                                     </StackPanel>
                                 </StackPanel>
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsChecked" Value="True">
-                                    <Setter TargetName="border" Property="BorderBrush" Value="#4ecca3"/>
-                                    <Setter TargetName="border" Property="Background" Value="#1a3a2e"/>
+                                    <Setter TargetName="border" Property="BorderBrush" Value="#10b981"/>
+                                    <Setter TargetName="border" Property="Background" Value="#f0ffff"/>
+                                    <Setter TargetName="border" Property="BorderThickness" Value="3"/>
                                 </Trigger>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="border" Property="Background" Value="#1f2937"/>
+                                    <Setter TargetName="border" Property="Background" Value="#e0f7ff"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -64,23 +65,24 @@
                 <RadioButton x:Name="QRRadio" GroupName="PaymentMethod">
                     <RadioButton.Template>
                         <ControlTemplate TargetType="RadioButton">
-                            <Border x:Name="border" Background="#1a1a2e" CornerRadius="8" Padding="12" Cursor="Hand"
-                                    BorderBrush="#333" BorderThickness="2">
+                            <Border x:Name="border" Background="#f0ffff" CornerRadius="8" Padding="12" Cursor="Hand"
+                                    BorderBrush="#87cefa" BorderThickness="2">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="📱" FontSize="22" VerticalAlignment="Center" Margin="0,0,10,0"/>
                                     <StackPanel VerticalAlignment="Center">
-                                        <TextBlock Text="QR Code Payment" FontSize="14" FontWeight="SemiBold" Foreground="White"/>
-                                        <TextBlock Text="Scan QR to pay" FontSize="10" Foreground="#888"/>
+                                        <TextBlock Text="QR Code Payment" FontSize="14" FontWeight="SemiBold" Foreground="#2d3748"/>
+                                        <TextBlock Text="Scan QR to pay" FontSize="10" Foreground="#87cefa"/>
                                     </StackPanel>
                                 </StackPanel>
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsChecked" Value="True">
-                                    <Setter TargetName="border" Property="BorderBrush" Value="#4ecca3"/>
-                                    <Setter TargetName="border" Property="Background" Value="#1a3a2e"/>
+                                    <Setter TargetName="border" Property="BorderBrush" Value="#10b981"/>
+                                    <Setter TargetName="border" Property="Background" Value="#f0ffff"/>
+                                    <Setter TargetName="border" Property="BorderThickness" Value="3"/>
                                 </Trigger>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="border" Property="Background" Value="#1f2937"/>
+                                    <Setter TargetName="border" Property="Background" Value="#e0f7ff"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -90,12 +92,12 @@
 
             <!-- QR Code Display (shown when QR selected) -->
             <Border x:Name="QRCodePanel" Grid.Row="3" Visibility="Collapsed" 
-                    Background="#1a1a2e" CornerRadius="8" Padding="10" Margin="0,0,0,5">
+                    Background="#f0ffff" CornerRadius="8" Padding="10" Margin="0,0,0,5" BorderBrush="#87cefa" BorderThickness="2">
                 <StackPanel HorizontalAlignment="Center">
-                    <Border Width="180" Height="180" Background="White" CornerRadius="8" Margin="0,0,0,8" Padding="3">
+                    <Border Width="180" Height="180" Background="White" CornerRadius="8" Margin="0,0,0,8" Padding="3" BorderBrush="#87cefa" BorderThickness="2">
                         <Image x:Name="QRCodeImage" Stretch="Uniform"/>
                     </Border>
-                    <TextBlock Text="Scan QR code to pay" FontSize="12" Foreground="#4ecca3" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+                    <TextBlock Text="Scan QR code to pay" FontSize="12" Foreground="#10b981" HorizontalAlignment="Center" FontWeight="SemiBold"/>
                 </StackPanel>
             </Border>
 
@@ -107,7 +109,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Button x:Name="CancelButton" Grid.Column="0" Content="Cancel" 
-                        Background="#e94560" Foreground="White" FontSize="16" FontWeight="Bold"
+                        Background="#ef4444" Foreground="White" FontSize="16" FontWeight="Bold"
                         Height="50" Margin="0,0,5,0" Cursor="Hand" Click="CancelButton_Click">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
@@ -116,7 +118,7 @@
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="border" Property="Background" Value="#ff6b6b"/>
+                                    <Setter TargetName="border" Property="Opacity" Value="0.9"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -124,7 +126,7 @@
                 </Button>
 
                 <Button x:Name="ConfirmButton" Grid.Column="1" Content="✓ Confirm Payment" 
-                        Background="#4ecca3" Foreground="#1a1a2e" FontSize="16" FontWeight="Bold"
+                        Background="#10b981" Foreground="White" FontSize="16" FontWeight="Bold"
                         Height="50" Margin="5,0,0,0" Cursor="Hand" Click="ConfirmButton_Click">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
@@ -133,7 +135,7 @@
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="border" Property="Background" Value="#6ee7b7"/>
+                                    <Setter TargetName="border" Property="Opacity" Value="0.9"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
