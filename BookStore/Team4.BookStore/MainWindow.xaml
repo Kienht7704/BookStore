@@ -118,6 +118,11 @@
                         Style="{StaticResource SidebarButtonStyle}"
                         Click="BookManageButton_Click"/>
 
+                <Button x:Name="CategoryManageButton" 
+                        Content="📑 Quản lý danh mục" 
+                        Style="{StaticResource SidebarButtonStyle}"
+                        Click="CategoryManageButton_Click"/>
+
                 <Button x:Name="UserManageButton" 
                         Content="👥 Quản lý người dùng" 
                         Style="{StaticResource SidebarButtonStyle}"
