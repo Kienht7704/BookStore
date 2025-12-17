@@ -217,5 +217,16 @@ namespace Team4.BookStore
                     "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            AirConDataGrid.ItemsSource = _service.SearchByName(SearchByNameTextBox.Text);
+        }
+
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            SearchByNameTextBox.Text = string.Empty;
+            AirConDataGrid.ItemsSource = _service.GetALLBook();
+        }
     }
 }

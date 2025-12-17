@@ -13,12 +13,12 @@
         <Label x:Name="HelloMsgLabel" Content="Hello, Administrator" HorizontalAlignment="Left" Height="50" Margin="929,6,0,0" VerticalAlignment="Top" Width="315" FontSize="25" FontStyle="Italic" Style="{StaticResource YellowLabelStyle}" HorizontalContentAlignment="Right"/>
 
         <Rectangle HorizontalAlignment="Left" Height="95" Margin="39,140,0,0" Stroke="Black" VerticalAlignment="Top" Width="1171" Fill="#ffff00" RadiusX="10" RadiusY="10" />
-        <Button x:Name="SearchButton" Content="Search Book" HorizontalAlignment="Left" Height="50" Margin="75,162,0,0" VerticalAlignment="Top" Width="262" TabIndex="2" Style="{StaticResource RedButtonStyle}"/>
-        <Label Content="Feature Function" HorizontalAlignment="Left" Height="45" Margin="388,169,0,0" VerticalAlignment="Top" Width="152" Foreground="#ff4500"/>
-        <TextBox x:Name="FeatureFunctionTextBox" HorizontalAlignment="Left" Height="45" Margin="547,165,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="303" TabIndex="0"/>
+        <Button x:Name="SearchButton" Content="Search Book" HorizontalAlignment="Left" Height="50" Margin="75,162,0,0" VerticalAlignment="Top" Width="262" TabIndex="2" Style="{StaticResource RedButtonStyle}" Click="SearchButton_Click"/>
+        <Label Content="Name:" HorizontalAlignment="Left" Height="45" Margin="388,169,0,0" VerticalAlignment="Top" Width="152" Foreground="#ff4500"/>
+        <TextBox x:Name="SearchByNameTextBox" HorizontalAlignment="Left" Height="46" Margin="473,164,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="303" TabIndex="0"/>
 
         <!-- POS Button - Opens Point of Sale -->
-        <Button x:Name="POSButton" Content="🛒 Open POS" HorizontalAlignment="Left" Height="50" Margin="880,165,0,0" VerticalAlignment="Top" Width="165" TabIndex="2" Click="POSButton_Click" Background="#4ecca3" Foreground="#1a1a2e" FontWeight="ExtraBold" FontSize="16"/>
+        <Button x:Name="POSButton" Content="🛒 Open POS" HorizontalAlignment="Left" Height="50" Margin="1003,162,0,0" VerticalAlignment="Top" Width="165" TabIndex="2" Click="POSButton_Click" Background="#4ecca3" Foreground="#1a1a2e" FontWeight="ExtraBold" FontSize="16"/>
 
         <Button x:Name="CreateButton" Content="Create Book" HorizontalAlignment="Left" Height="50" Margin="1003,294,0,0" VerticalAlignment="Top" Width="185" TabIndex="3" Click="CreateButton_Click"/>
         <Button x:Name="UpdateButton" Content="Update Book" HorizontalAlignment="Left" Height="50" Margin="1003,367,0,0" VerticalAlignment="Top" Width="185
@@ -30,7 +30,7 @@
         <!-- Import/Export Excel Buttons -->
         <Button x:Name="ImportButton" Content="Import Excel" HorizontalAlignment="Left" Height="40" Margin="40,605,0,0" VerticalAlignment="Top" Width="120" Click="ImportButton_Click" Background="#4CAF50" Foreground="White" FontWeight="Bold"/>
         <Button x:Name="ExportButton" Content="Export Excel" HorizontalAlignment="Left" Height="40" Margin="170,605,0,0" VerticalAlignment="Top" Width="120" Click="ExportButton_Click" Background="#2196F3" Foreground="White" FontWeight="Bold"/>
-        
+
         <Button x:Name="QRScanButton" 
         Content="📱 Quét QR/Barcode" 
         HorizontalAlignment="Left" 
@@ -81,6 +81,7 @@
         </DataGrid>
 
         <Button x:Name="UserManageButton" Content="User Manage" HorizontalAlignment="Left" Height="50" Margin="1003,235,0,0" VerticalAlignment="Top" Width="185" TabIndex="3" Click="UserManageButton_Click"/>
+        <Button x:Name="ResetButton" Content="Reset" HorizontalAlignment="Left" Height="54" Margin="804,160,0,0" VerticalAlignment="Top" Width="133" TabIndex="2" Style="{StaticResource RedButtonStyle}" Click="ResetButton_Click"/>
 
     </Grid>
 </Window>

@@ -1,5 +1,6 @@
 ﻿using BookStore.BLL.Services;
 using BookStore.DAL.Entities;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,6 +67,17 @@ namespace Team4.BookStore
                 return;
             }
             _user.DeleteUser(selected);
+            dgUsers.ItemsSource = _user.GetAllUsers();
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            dgUsers.ItemsSource = _user.SearchByName(SearchTextBox.Text);
+        }
+
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            SearchTextBox.Text = string.Empty;
             dgUsers.ItemsSource = _user.GetAllUsers();
         }
     }

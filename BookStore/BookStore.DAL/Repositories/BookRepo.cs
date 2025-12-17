@@ -104,5 +104,13 @@ namespace BookStore.DAL.Repositories
                 return null;
             }
         }
+        public List<Book> Search(string search)
+        {
+            _ctx = new();
+            return _ctx.Books
+                .Include("Category")
+                .Where(b => b.BookName.Contains(search) || b.Author.Contains(search))
+                .ToList();
+        }
     }
 }
