@@ -139,6 +139,11 @@
                         Content="🛒 Mở POS" 
                         Style="{StaticResource SidebarButtonStyle}"
                         Click="POSButton_Click"/>
+
+                <Button x:Name="InvoiceDetailButton" 
+                        Content="📋 Xem Hóa Đơn" 
+                        Style="{StaticResource SidebarButtonStyle}"
+                        Click="InvoiceDetailButton_Click"/>
             </StackPanel>
         </Border>
 

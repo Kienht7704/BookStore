@@ -25,6 +25,7 @@ namespace Team4.BookStore
         private CategoryManagementView _categoryManagementView;
         private UserManagementView _userManagementView;
         private POSView _posView;
+        private InvoiceDetailView _invoiceDetailView;
 
         public MainWindow()
         {
@@ -88,6 +89,7 @@ namespace Team4.BookStore
             CategoryManageButton.Background = Brushes.Transparent;
             UserManageButton.Background = Brushes.Transparent;
             POSButton.Background = Brushes.Transparent;
+            InvoiceDetailButton.Background = Brushes.Transparent;
         }
 
         private void LoadCategoryManagementView()
@@ -111,6 +113,7 @@ namespace Team4.BookStore
             BookManageButton.Background = Brushes.Transparent;
             UserManageButton.Background = Brushes.Transparent;
             POSButton.Background = Brushes.Transparent;
+            InvoiceDetailButton.Background = Brushes.Transparent;
         }
 
         private void LoadUserManagementView()
@@ -134,6 +137,7 @@ namespace Team4.BookStore
             BookManageButton.Background = Brushes.Transparent;
             CategoryManageButton.Background = Brushes.Transparent;
             POSButton.Background = Brushes.Transparent;
+            InvoiceDetailButton.Background = Brushes.Transparent;
         }
 
         private void LoadPOSView()
@@ -157,6 +161,30 @@ namespace Team4.BookStore
             BookManageButton.Background = Brushes.Transparent;
             CategoryManageButton.Background = Brushes.Transparent;
             UserManageButton.Background = Brushes.Transparent;
+            InvoiceDetailButton.Background = Brushes.Transparent;
+        }
+
+        private void LoadInvoiceDetailView()
+        {
+            if (_invoiceDetailView == null)
+            {
+                _invoiceDetailView = new InvoiceDetailView();
+            }
+            MainContentControl.Content = _invoiceDetailView;
+
+            // Update page title
+            var titleLabel = FindVisualChild<TextBlock>(this, "PageTitleLabel");
+            if (titleLabel != null)
+            {
+                titleLabel.Text = "Xem Hóa Đơn Chi Tiết";
+            }
+
+            // Highlight active menu
+            InvoiceDetailButton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#34495e"));
+            POSButton.Background = Brushes.Transparent;
+            BookManageButton.Background = Brushes.Transparent;
+            CategoryManageButton.Background = Brushes.Transparent;
+            UserManageButton.Background = Brushes.Transparent;
         }
 
         private void BookManageButton_Click(object sender, RoutedEventArgs e)
@@ -177,6 +205,11 @@ namespace Team4.BookStore
         private void POSButton_Click(object sender, RoutedEventArgs e)
         {
             LoadPOSView();
+        }
+
+        private void InvoiceDetailButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoadInvoiceDetailView();
         }
 
         private void Quit_Click(object sender, RoutedEventArgs e)

@@ -63,6 +63,8 @@ namespace Team4.BookStore
             else
             {
                 DetailTitleLable.Content = "Tạo mới Sách";
+                BookIdTextBox.Text = _bookService.AutoGenBookId().ToString();
+                BookIdTextBox.IsEnabled = false;
             }
         }
 

@@ -112,5 +112,17 @@ namespace BookStore.DAL.Repositories
                 .Where(b => b.BookName.Contains(search) || b.Author.Contains(search))
                 .ToList();
         }
+        public int AutogenId()
+        {
+            _ctx = new();
+            if (_ctx.Books.Count() ==0 )
+            {
+                return 1;
+            }
+            else
+            {
+                return _ctx.Books.Max(u => u.BookId);
+            }
+        }
     }
 }

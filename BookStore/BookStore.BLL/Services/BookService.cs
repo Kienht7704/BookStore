@@ -40,7 +40,10 @@ namespace BookStore.BLL.Services
         {
             return _repo.Search(search);
         }
-
+        public int AutoGenBookId()
+        {
+            return _repo.AutogenId();
+        }
     }
 }
 
