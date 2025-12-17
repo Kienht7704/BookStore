@@ -124,13 +124,9 @@
                         <!-- Publication Date -->
                         <StackPanel Grid.Column="0">
                             <Label Content="Publication Date (dd/MM/yyyy)" Foreground="#2d3748" FontWeight="SemiBold" FontSize="14" Padding="0,0,0,5"/>
-                            <TextBox x:Name="PublicationDateTextBox" Height="40" Padding="12,8" FontSize="13" BorderBrush="#87cefa" BorderThickness="2" TabIndex="6">
-                                <TextBox.Resources>
-                                    <Style TargetType="Border">
-                                        <Setter Property="CornerRadius" Value="6"/>
-                                    </Style>
-                                </TextBox.Resources>
-                            </TextBox>
+                            <DatePicker x:Name="DateDataPicker" Height="40" Width="269"/>
+
+
                         </StackPanel>
 
                         <!-- Description -->

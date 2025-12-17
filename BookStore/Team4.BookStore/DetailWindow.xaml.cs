@@ -46,7 +46,7 @@ namespace Team4.BookStore
                 BookIdTextBox.IsEnabled = false;
                 BookNameTextBox.Text = X.BookName;
                 DescriptionTextBox.Text = X.Description;
-                PublicationDateTextBox.Text = X.PublicationDate.ToString("yyyy-MM-dd");
+                DateDataPicker.Text = X.PublicationDate.ToString("yyyy-MM-dd");
                 QuantityTextBox.Text = X.Quantity.ToString();
                 PriceTextBox.Text = X.Price.ToString();
                 AuthorTextBox.Text = X.Author.ToString();
@@ -97,7 +97,7 @@ namespace Team4.BookStore
                 obj.BookId = int.Parse(BookIdTextBox.Text);
                 obj.BookName = BookNameTextBox.Text;
                 obj.Description = DescriptionTextBox.Text;
-                obj.PublicationDate = DateTime.Parse(PublicationDateTextBox.Text);
+                obj.PublicationDate = DateTime.Parse(DateDataPicker.Text);
                 obj.Quantity = int.Parse(QuantityTextBox.Text);
                 obj.Price = double.Parse(PriceTextBox.Text);
                 obj.Author = AuthorTextBox.Text;
