@@ -34,8 +34,8 @@ namespace Team4.BookStore.Views
             OrderDataGrid.ItemsSource = null;
             OrderDataGrid.ItemsSource = _posService.CurrentOrder;
 
-            SubtotalLabel.Text = $"{_posService.CalculateSubtotal():N0} VN?";
-            TotalLabel.Text = $"{_posService.CalculateTotal():N0} VN?";
+            SubtotalLabel.Text = $"{_posService.CalculateSubtotal():N0} $";
+            TotalLabel.Text = $"{_posService.CalculateTotal():N0} $";
 
             PayButton.IsEnabled = _posService.CurrentOrder.Count > 0;
         }
