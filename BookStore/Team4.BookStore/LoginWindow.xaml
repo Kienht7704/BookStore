@@ -5,22 +5,170 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Team4.BookStore"
         mc:Ignorable="d"
-        Title="Login Window" Height="538" Width="855" Background="#ff2800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-    <Grid Margin="-17,0,17,0">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="63*"/>
-            <ColumnDefinition Width="65*"/>
-            <ColumnDefinition Width="722*"/>
-        </Grid.ColumnDefinitions>
-        <Rectangle HorizontalAlignment="Left" Height="354" Stroke="Black" VerticalAlignment="Top" Width="574" Fill="#ffff00" RadiusX="20" RadiusY="20" Margin="23,70,0,0" Grid.Column="2"/>
-        <Label Content="Login" HorizontalAlignment="Left" Height="60" Margin="195,77,0,0" VerticalAlignment="Top" Width="230" FontWeight="ExtraBold" FontSize="40" Foreground="#ff4500" HorizontalContentAlignment="Center" Grid.Column="2"/>
-        <Label Content="Email" HorizontalAlignment="Left" Height="45" Margin="68,182,0,0" VerticalAlignment="Top" Width="107" Foreground="#ff4500" Grid.Column="2"/>
-        <TextBox x:Name="EmailAddressTextBox" HorizontalAlignment="Left" Height="45" Margin="180,179,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="374" TabIndex="0" Grid.Column="2"/>
-        <Label Content="Password" HorizontalAlignment="Left" Height="45" Margin="68,251,0,0" VerticalAlignment="Top" Width="107" Foreground="#ff4500" Grid.Column="2"/>
-        <TextBox x:Name="PasswordTextBox" HorizontalAlignment="Left" Height="45" TextWrapping="Wrap"  VerticalAlignment="Top" Width="374" TabIndex="1" Grid.Column="2" Margin="180,249,0,0"/>
-        <Button x:Name="LoginButton" Content="Login" HorizontalAlignment="Left" Height="55" Margin="68,339,0,0" VerticalAlignment="Top" Width="230" TabIndex="2"  Grid.Column="2"  Style="{StaticResource RedButtonStyle}" Click="LoginButton_Click" />
-        <Button x:Name="QuitButton" Content="Quit" HorizontalAlignment="Left" Height="55" Margin="324,339,0,0" VerticalAlignment="Top" Width="230" TabIndex="3"  Grid.Column="2" Style="{StaticResource RedButtonStyle}"/>
-        <Label Content="© 2025 Kin" HorizontalAlignment="Left" Height="45" Margin="252,444,0,0" VerticalAlignment="Top" Width="116" Foreground="#ffff00" Grid.Column="2"/>
+        Title="Login Window" Height="600" Width="1000" 
+        WindowStyle="None" AllowsTransparency="True" 
+        Background="Transparent" 
+        WindowStartupLocation="CenterScreen" 
+        ResizeMode="NoResize">
+    <Window.InputBindings>
+        <KeyBinding Key="Enter" Command="{Binding LoginCommand}"/>
+    </Window.InputBindings>
+    <Border Background="#f0ffff" CornerRadius="15">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
 
-    </Grid>
+            <Border Grid.Column="0" Background="#87cefa" CornerRadius="15,0,0,15">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="BOOKSTORE" FontSize="36" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+                    <TextBlock Text="Welcome Back" FontSize="20" Foreground="White" HorizontalAlignment="Center" Opacity="0.9"/>
+                </StackPanel>
+            </Border>
+            <Border Background="#87cefa" 
+                    CornerRadius="15,0,0,15">
+                <Grid>
+                    <StackPanel VerticalAlignment="Center" 
+                               Margin="60">
+                        
+                        <TextBlock Text="📚 Bookstore Manager" 
+                                  FontSize="36" 
+                                  FontWeight="Bold" 
+                                  Foreground="White"
+                                  HorizontalAlignment="Center"
+                                  TextAlignment="Center"
+                                  Margin="0,0,0,20"
+                                  TextWrapping="Wrap"/>
+
+                        <TextBlock Text="Your complete solution for book management" 
+                                  FontSize="16" 
+                                  Foreground="#e3f2fd"
+                                  HorizontalAlignment="Center"
+                                  TextWrapping="Wrap"
+                                  TextAlignment="Center"
+                                  LineHeight="24"/>
+
+                        <Border Height="2" 
+                               Background="White" 
+                               Opacity="0.3"
+                               Width="200"
+                               Margin="0,40,0,40"
+                               CornerRadius="1"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Grid Grid.Column="1" Margin="60">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" VerticalAlignment="Top">
+                    <TextBlock Text="Login" FontSize="32" FontWeight="Bold" Foreground="#2d3748" Margin="0,0,0,40"/>
+
+                    <TextBlock Text="Email" FontSize="14" Foreground="#2d3748" Margin="0,0,0,8"/>
+                    <TextBox x:Name="EmailAddressTextBox" Height="45" FontSize="14" Padding="12" TabIndex="0" Margin="0,0,0,24">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="BorderBrush" Value="#87cefa"/>
+                                <Setter Property="BorderThickness" Value="2"/>
+                                <Setter Property="Background" Value="White"/>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+
+                    <TextBlock Text="Password" FontSize="14" Foreground="#2d3748" Margin="0,0,0,8"/>
+
+                    <Grid Margin="0,0,0,32">
+                        <!-- PasswordBox - ẩn password -->
+                        <PasswordBox x:Name="PasswordBoxControl" Height="45" FontSize="14" 
+                 Padding="12,12,45,12" TabIndex="1">
+                            <PasswordBox.Style>
+                                <Style TargetType="PasswordBox">
+                                    <Setter Property="BorderBrush" Value="#87cefa"/>
+                                    <Setter Property="BorderThickness" Value="2"/>
+                                    <Setter Property="Background" Value="White"/>
+                                </Style>
+                            </PasswordBox.Style>
+                        </PasswordBox>
+
+                        <!-- TextBox - hiện password -->
+                        <TextBox x:Name="PasswordTextBox" Height="45" FontSize="14" 
+             Padding="12,12,45,12" Visibility="Collapsed">
+                            <TextBox.Style>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="BorderBrush" Value="#87cefa"/>
+                                    <Setter Property="BorderThickness" Value="2"/>
+                                    <Setter Property="Background" Value="White"/>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+
+                        <!-- Button show/hide -->
+                        <Button x:Name="TogglePasswordButton" Width="40" Height="40" 
+            HorizontalAlignment="Right" VerticalAlignment="Center" 
+            Margin="0,0,5,0" Click="TogglePasswordButton_Click"
+            Background="Transparent" BorderThickness="0" Cursor="Hand">
+                            <TextBlock x:Name="PasswordToggleIcon" Text="👁" FontSize="18" 
+                   Foreground="#87cefa"/>
+                        </Button>
+                    </Grid>
+
+                    <Button x:Name="LoginButton" Content="Login" Height="50" FontSize="16" FontWeight="Bold" TabIndex="2" Click="LoginButton_Click" Margin="0,0,0,16">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#87cefa"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#6db9e8"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <Button x:Name="QuitButton" Content="Quit" Height="50" FontSize="16" TabIndex="3">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Foreground" Value="#2d3748"/>
+                                <Setter Property="BorderBrush" Value="#87cefa"/>
+                                <Setter Property="BorderThickness" Value="2"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="8">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#f0f4f8"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
 </Window>

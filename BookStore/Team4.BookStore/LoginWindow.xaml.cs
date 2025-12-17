@@ -27,6 +27,24 @@ namespace Team4.BookStore
             InitializeComponent();
         }
 
+        private void TogglePasswordButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (PasswordBoxControl.Visibility == Visibility.Visible)
+            {
+                PasswordTextBox.Text = PasswordBoxControl.Password;
+                PasswordBoxControl.Visibility = Visibility.Collapsed;
+                PasswordTextBox.Visibility = Visibility.Visible;
+                PasswordToggleIcon.Text = "👁‍🗨";
+            }
+            else
+            {
+                PasswordBoxControl.Password = PasswordTextBox.Text;
+                PasswordTextBox.Visibility = Visibility.Collapsed;
+                PasswordBoxControl.Visibility = Visibility.Visible;
+                PasswordToggleIcon.Text = "👁";
+            }
+        }
+
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             // todo làm login sau
@@ -38,6 +56,7 @@ namespace Team4.BookStore
                 MessageBox.Show("Both email and pass are required!", "Required", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+
 
             //biến acc hứng record / row trả về nếu match email, pass - tuỳ chiến lược login
 
